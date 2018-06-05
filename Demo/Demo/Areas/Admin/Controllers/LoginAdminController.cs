@@ -23,6 +23,7 @@ namespace Demo.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(string UserName, string Password)
         {
+            Session["currentPage"] = Request.Url.AbsoluteUri;
             AccountDTO account = new AccountDTO(UserName, Password);
             if (LoginAccount(UserName, Password))
             {

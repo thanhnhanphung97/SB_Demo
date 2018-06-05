@@ -11,5 +11,12 @@ namespace Demo.Models.DAO
         {
             if (HttpContext.Current.Session["loginSession"] == null) HttpContext.Current.Response.Redirect("/Admin/LoginAdmin");
         }
+
+        public static bool isNumber(string s)
+        {
+            for (int i = 0; i < s.Length; i++)
+                if (!char.IsDigit(s[i])) return false;
+            return true;
+        }
     }
 }

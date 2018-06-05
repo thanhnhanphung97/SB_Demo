@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Demo.Models.DTO.PartnersDTO>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="width:1906px;margin-left:-382px;">
+    @{
+        foreach (var item in Model)
+        {
+
+            String bgimg = "text-align:center;height:500px;width:100%;background-image:url(/Images/" + item.Background + ");";
+
+            <div style=@bgimg>
+                <div>
+                    @{String img = "/Images/" + item.Img;
+                    }
+                    <img src=@img alt="" height="160" width="160" />
+                </div>
+                <div style="margin-bottom:15px;font-size:50px;font-weight:bold;">
+                    @item.Name
+                    <br />
+                </div>
+                <div style="font-size:16px;width:40%;margin-left:30%;">
+                    @Html.Raw(@item.Describe)
+
+                </div>
+                <div style="margin-left:45%;margin-top:75px;">
+                    <a href="" style="color:none;text-decoration:none;font-size:20px;font-weight:bold;"><div style="text-align:center;background-color:white;width:16%;padding-top:06px;padding-bottom:6px;border-radius:6px;">QUESTIONS?</div></a>
+                </div>
+            </div>
+        }
+    }
+</div>

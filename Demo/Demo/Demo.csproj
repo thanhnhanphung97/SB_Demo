@@ -144,17 +144,24 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PartnersAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\IntroducesAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Areas\Admin\Models\AccountModel.cs" />
     <Compile Include="Areas\Admin\Models\IntroducesModel.cs" />
+    <Compile Include="Areas\Admin\Models\NewsModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PartnersController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAO\AccountDAO.cs" />
     <Compile Include="Models\DAO\Check.cs" />
     <Compile Include="Models\DAO\DataProvider.cs" />
+    <Compile Include="Models\DAO\PartnersDAO.cs" />
+    <Compile Include="Models\DAO\NewsDAO.cs" />
     <Compile Include="Models\DAO\IntroducesDAO.cs" />
     <Compile Include="Models\DTO\AccountDTO.cs" />
     <Compile Include="Models\DTO\IntroducesDTO.cs" />
@@ -609,6 +616,17 @@
     <Content Include="Scripts\hAmfqrFPh_wgMqcsWne70WcGW0vN3zpqZb32EEucCfk.js" />
     <Content Include="Areas\Admin\Views\IntroducesAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\IntroducesAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\IntroducesAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PartnersAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PartnersAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PartnersAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PartnersAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PartnersAdmin\Details.cshtml" />
     <None Include="Scripts\jquery-1.11.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.0.js" />
     <Content Include="Scripts\jquery-1.11.0.min.js" />
@@ -660,6 +678,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\news\Index.cshtml" />
+    <Content Include="Views\news\Details.cshtml" />
+    <Content Include="Views\Partners\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

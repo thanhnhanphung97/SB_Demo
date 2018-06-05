@@ -15,6 +15,7 @@ namespace Demo.Areas.Admin.Controllers
         public ActionResult Index()
         {
             Check.Out();
+            Session["currentPage"] = Request.Url.AbsoluteUri;
             ViewBag.Text = Session["loginSession"];
             return View();
             

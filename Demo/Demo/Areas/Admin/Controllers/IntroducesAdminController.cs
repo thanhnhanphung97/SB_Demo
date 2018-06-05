@@ -13,8 +13,9 @@ namespace Demo.Areas.Admin.Controllers
     {
         // GET: Admin/Introduces
         public ActionResult Index()
-        {
+        { 
             Check.Out();
+            Session["currentPage"] = Request.Url.AbsoluteUri;
             List<IntroducesDTO> list = IntroducesDAO.Instance.GetListIntroducts();
             return View(list.ToList());
         }
@@ -23,6 +24,7 @@ namespace Demo.Areas.Admin.Controllers
         public ActionResult Create()
         {
             Check.Out();
+            Session["currentPage"] = Request.Url.AbsoluteUri;
             return View();
         }
 
@@ -42,19 +44,15 @@ namespace Demo.Areas.Admin.Controllers
             return IntroducesDAO.Instance.InsertIntroduces(name, img, data, describe, color);
         }
         
-        public ActionResult Edit(int Id) //string Id
+        public ActionResult Edit(string Id)
         {
-            //for(int i=0;i<Id.Length;i++)
-            //{
-            //    if ((int)Id[i] < 48 || (int)Id[i] > 57) Id.Substring(i, Id.Length);
-            //}
-            //Check.Out();
-
-            //if (Id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            IntroducesDTO intro = IntroducesDAO.Instance.GetIntroducts(Id); //Int32.Parse(Id)
+            if (!Check.isNumber(Id))
+            {
+                Response.Redirect(Session["currentPage"].ToString());
+            }
+            Check.Out();
+            Session["currentPage"] = Request.Url.AbsoluteUri;
+            IntroducesDTO intro = IntroducesDAO.Instance.GetIntroducts(int.Parse(Id));
             if (intro == null)
             {
                 return HttpNotFound();
@@ -79,14 +77,15 @@ namespace Demo.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int Id)
+        public ActionResult Delete(string Id)
         {
+            if (!Check.isNumber(Id))
+            {
+                Response.Redirect(Session["currentPage"].ToString());
+            }
             Check.Out();
-            //if (Id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            IntroducesDTO intro = IntroducesDAO.Instance.GetIntroducts(Id);
+            Session["currentPage"] = Request.Url.AbsoluteUri;
+            IntroducesDTO intro = IntroducesDAO.Instance.GetIntroducts(int.Parse(Id));
             if (intro == null)
             {
                 return HttpNotFound();
@@ -99,7 +98,6 @@ namespace Demo.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int Id)
         {
             Check.Out();
-            //IntroducesDTO intro = IntroducesDAO.Instance.GetIntroducts(Id);
 
             if(DeleteIntroduces(Id)) return RedirectToAction("Index","IntroducesAdmin");
 
@@ -109,6 +107,22 @@ namespace Demo.Areas.Admin.Controllers
         bool DeleteIntroduces(int id)
         {
             return IntroducesDAO.Instance.DeleteIntroduces(id);
+        }
+
+        public ActionResult Details(string Id)
+        {
+            if (!Check.isNumber(Id))
+            {
+                Response.Redirect(Session["currentPage"].ToString());
+            }
+            Check.Out();
+            Session["currentPage"] = Request.Url.AbsoluteUri;
+            IntroducesDTO intro = IntroducesDAO.Instance.GetIntroducts(int.Parse(Id));
+            if (intro == null)
+            {
+                return HttpNotFound();
+            }
+            return View(intro);
         }
 
     }
