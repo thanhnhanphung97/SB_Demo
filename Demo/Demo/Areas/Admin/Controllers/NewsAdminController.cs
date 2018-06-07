@@ -46,12 +46,12 @@ namespace Demo.Areas.Admin.Controllers
                 Response.Redirect(Session["currentPage"].ToString());
             }
             Check.Out();
-            Session["currentPage"] = Request.Url.AbsoluteUri;
             NewsDTO intro = NewsDAO.Instance.GetNews(int.Parse(Id));
             if (intro == null)
             {
-                return HttpNotFound();
+                Response.Redirect(Session["currentPage"].ToString());
             }
+            Session["currentPage"] = Request.Url.AbsoluteUri;
             return View(intro);
         }
 
@@ -74,12 +74,12 @@ namespace Demo.Areas.Admin.Controllers
                 Response.Redirect(Session["currentPage"].ToString());
             }
             Check.Out();
-            Session["currentPage"] = Request.Url.AbsoluteUri;
             NewsDTO intro = NewsDAO.Instance.GetNews(int.Parse(Id));
             if (intro == null)
             {
-                return HttpNotFound();
+                Response.Redirect(Session["currentPage"].ToString());
             }
+            Session["currentPage"] = Request.Url.AbsoluteUri;
             return View(intro);
         }
 
@@ -101,12 +101,12 @@ namespace Demo.Areas.Admin.Controllers
                 Response.Redirect(Session["currentPage"].ToString());
             }
             Check.Out();
-            Session["currentPage"] = Request.Url.AbsoluteUri;
             NewsDTO intro = NewsDAO.Instance.GetNews(int.Parse(Id));
             if (intro == null)
             {
-                return HttpNotFound();
+                Response.Redirect(Session["currentPage"].ToString());
             }
+            Session["currentPage"] = Request.Url.AbsoluteUri;
             return View(intro);
         }
 

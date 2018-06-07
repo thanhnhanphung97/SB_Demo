@@ -36,7 +36,7 @@
             @Html.DisplayFor(modelItem => item.Img)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Describe)
+            @Html.Raw(item.Describe)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Background)
