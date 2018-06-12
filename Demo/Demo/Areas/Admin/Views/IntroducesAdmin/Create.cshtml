@@ -15,7 +15,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 <link href="~/Scripts/froala-editor/css/froala_style.min.css" rel="stylesheet" />
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create","IntroducesAdmin",FormMethod.Post,new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -34,8 +34,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Img, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
+                @*@Html.TextBoxFor(model => model.Img, new { htmlAttributes = new { @class = "form-control ",@style = "float:left;"} })*@
+                <input type="file" name="ImageFile" required>
+                @*@Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -82,4 +83,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
     <script src="~/Scripts/froala-editor/js/froala_editor.pkgd.min.js"></script>
     <script>$(function () { $('textarea').froalaEditor() });</script>
+    <script src="~/Areas/Admin/Assets/ckfinder/ckfinder.js"></script>
+    @*<script src="~/Scripts/main.js"></script>*@
 }

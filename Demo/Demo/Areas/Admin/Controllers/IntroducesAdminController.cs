@@ -2,11 +2,11 @@
 using Demo.Models.DTO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-
 namespace Demo.Areas.Admin.Controllers
 {
     public class IntroducesAdminController : Controller
@@ -23,20 +23,28 @@ namespace Demo.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            Session["loginSession"] = "admin";
             Check.Out();
             Session["currentPage"] = Request.Url.AbsoluteUri;
             return View();
         }
 
-        [HttpPost,ValidateInput(false)]
+        [HttpPost,ValidateInput(false),ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(string Name,string Img,float Data,string Describe,string Color)
+        public ActionResult Create(string Name,HttpPostedFileBase imageModel, float Data,string Describe,string Color)
         {
+            Session["loginSession"] = "admin";
+            string Img = Path.GetFileNameWithoutExtension(imageModel.FileName);
+            string extension = Path.GetExtension(imageModel.FileName);
+            Img = Img + DateTime.Now.ToString("yymmssfff") + extension;
+            Img = Path.Combine(Server.MapPath("~/Images/"), Img);
+            imageModel.SaveAs(Img);
             if (InsertIntroduces(Name, Img, Data, Describe, Color))
             {
                 return RedirectToAction("Index", "IntroducesAdmin");
             }
-            else return View();
+            else
+                return View();
         }
 
         bool InsertIntroduces(string name,string img,float data,string describe,string color)

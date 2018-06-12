@@ -58,6 +58,7 @@ namespace Demo.Models.DTO
         public string Describe { get => describe; set => describe = value; }
         [Required(ErrorMessage = "This is a required field.")]
         public string Color { get => color; set => color = value; }
-        
+        public HttpPostedFileBase ImageFile { get; set; }
+
     }
 }
