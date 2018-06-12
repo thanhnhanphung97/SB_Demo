@@ -42,7 +42,7 @@
                 @Html.DisplayFor(modelItem => item.Data)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Describe)
+                @Html.Raw(item.Describe)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Color)
