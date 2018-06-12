@@ -32,10 +32,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.TextBoxFor(model => model.Img, new { htmlAttributes = new { @class = "form-control ",@style = "float:left;"} })*@
-                <input type="file" value="" name="ImageFile" required>
+                <input type="file" name="ImageFile" required>
                 <div style="color:red;">@ViewBag.Text</div>
                 @*@Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })*@
             </div>

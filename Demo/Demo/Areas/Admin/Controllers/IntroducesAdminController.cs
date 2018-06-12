@@ -66,7 +66,7 @@ namespace Demo.Areas.Admin.Controllers
         
         public ActionResult Edit(string Id)
         {
-            if (!Check.isNumber(Id))
+            if (Id==null||!Check.isNumber(Id))
             {
                 Response.Redirect(Session["currentPage"].ToString());
             }
@@ -99,7 +99,7 @@ namespace Demo.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(string Id)
         {
-            if (!Check.isNumber(Id))
+            if (Id == null || !Check.isNumber(Id))
             {
                 Response.Redirect(Session["currentPage"].ToString());
             }
@@ -138,7 +138,7 @@ namespace Demo.Areas.Admin.Controllers
 
         public ActionResult Details(string Id)
         {
-            if (!Check.isNumber(Id))
+            if (Id == null || !Check.isNumber(Id))
             {
                 Response.Redirect(Session["currentPage"].ToString());
             }
