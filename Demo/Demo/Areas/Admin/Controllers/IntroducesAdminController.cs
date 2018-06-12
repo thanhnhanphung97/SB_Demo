@@ -7,14 +7,17 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Demo.Areas.Admin.Models;
 namespace Demo.Areas.Admin.Controllers
 {
     public class IntroducesAdminController : Controller
     {
+        
         // GET: Admin/Introduces
         public ActionResult Index()
         { 
             Check.Out();
+            
             Session["currentPage"] = Request.Url.AbsoluteUri;
             List<IntroducesDTO> list = IntroducesDAO.Instance.GetListIntroducts();
             return View(list.ToList());
@@ -23,7 +26,7 @@ namespace Demo.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            Session["loginSession"] = "admin";
+            //Session["loginSession"] = "admin";
             Check.Out();
             Session["currentPage"] = Request.Url.AbsoluteUri;
             return View();
@@ -31,15 +34,24 @@ namespace Demo.Areas.Admin.Controllers
 
         [HttpPost,ValidateInput(false),ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(string Name,HttpPostedFileBase imageModel, float Data,string Describe,string Color)
+        public ActionResult Create(IntroducesModel introModel)
         {
-            Session["loginSession"] = "admin";
-            string Img = Path.GetFileNameWithoutExtension(imageModel.FileName);
-            string extension = Path.GetExtension(imageModel.FileName);
-            Img = Img + DateTime.Now.ToString("yymmssfff") + extension;
+            //Session["loginSession"] = "admin";
+            //string Img = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
+            //string extension = Path.GetExtension(imageModel.ImageFile.FileName);
+            //Img = Img + DateTime.Now.ToString("yymmssfff") + extension;
+            string Img = introModel.ImageFile.FileName;
             Img = Path.Combine(Server.MapPath("~/Images/"), Img);
-            imageModel.SaveAs(Img);
-            if (InsertIntroduces(Name, Img, Data, Describe, Color))
+            if (System.IO.File.Exists(Img))
+            {
+                ViewBag.Text = "Image name is identical.";
+                return View();
+            }
+            else ViewBag.Text = "";
+            introModel.ImageFile.SaveAs(Img);
+            Img = introModel.ImageFile.FileName;
+
+            if (InsertIntroduces(introModel.Name, Img, introModel.Data, introModel.Describe, introModel.Color))
             {
                 return RedirectToAction("Index", "IntroducesAdmin");
             }
@@ -114,6 +126,13 @@ namespace Demo.Areas.Admin.Controllers
 
         bool DeleteIntroduces(int id)
         {
+            IntroducesDTO intro = IntroducesDAO.Instance.GetIntroducts(id);
+            string img = intro.Img;
+            string fullPath = Request.MapPath("~/Images/" + img);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
             return IntroducesDAO.Instance.DeleteIntroduces(id);
         }
 
