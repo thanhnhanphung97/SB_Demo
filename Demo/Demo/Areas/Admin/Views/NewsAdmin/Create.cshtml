@@ -16,6 +16,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 <link href="~/Scripts/froala-editor/css/froala_style.min.css" rel="stylesheet" />
 
+<script>var img=''</script>
+
 @section jsFooter{
     <script>
         $('#btnSelectedImage').on('click', function (e) {
@@ -23,6 +25,8 @@
                 var finder = new CKFinder();
                 finder.selectActionFunction = function (url) {
                     $('#txtImage').val(url);
+                    document.getElementById("image").src = url;
+                    document.getElementById("divimg").style.display = 'block';
                 }
                 finder.popup();
             })
@@ -48,8 +52,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Img, new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;", @readonly = "readonly", id = "txtImage" })
+                @Html.TextBoxFor(model => model.Img, new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;display:none;", @readonly = "readonly", id = "txtImage" })
                 <a id="btnSelectedImage" href="#">Chọn ảnh</a>
+                <div id="divimg" style="float:right;display:none;margin-right:70.5%;"><img src="" height="125" width="175" id="image" /></div>
                 @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
             </div>
         </div>

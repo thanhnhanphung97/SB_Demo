@@ -67,7 +67,7 @@ namespace Demo.Areas.Admin.Controllers
         
         public ActionResult Edit(string Id)
         {
-            Session["loginSession"] = "admin";
+            //Session["loginSession"] = "admin";
             if (Id==null||!Check.isNumber(Id))
             {
                 Response.Redirect(Session["currentPage"].ToString());
