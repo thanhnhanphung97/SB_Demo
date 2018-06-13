@@ -12,10 +12,10 @@
 
             <div style="float:left;height:600px;width:450px;margin-right:60px;">
                 <div>
-                    @{String img = "/Images/" + item.Img;
+                    @{@*String img = "/Images/" + item.Img;*@
                         String link = "/news/Details/" + item.Id;
                     }
-                    <a href=@link><img src=@img alt="" height="300" width="450" /></a>
+                    <a href=@link><img src=@item.Img alt="" height="300" width="450" /></a>
                 </div>
                 <div style="margin-top:25px;margin-bottom:15px;">
                     <a href=@link style="font-weight:bold;color:black;font-size:20px;text-decoration:none;">@item.Name</a>

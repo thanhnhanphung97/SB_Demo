@@ -92,10 +92,10 @@ namespace Demo.Areas.Admin.Controllers
         //    }
         //    return View();
         //}
-        public ActionResult Edit(IntroducesModel introModel)
+        public ActionResult Edit(int Id,string Name, string Img, float Data, string Describe, string Color)
         {
             Session["loginSession"] = "admin";
-            if (EditIntroduces(introModel.Id, introModel.Name, introModel.ImageFile.FileName, introModel.Data, introModel.Describe, introModel.Color))
+            if (EditIntroduces(Id, Name, Img, Data, Describe, Color))
             {
                 return RedirectToAction("Index", "IntroducesAdmin");
             }
