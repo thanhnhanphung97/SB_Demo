@@ -34,24 +34,25 @@ namespace Demo.Areas.Admin.Controllers
 
         [HttpPost,ValidateInput(false),ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IntroducesModel introModel)
+        public ActionResult Create(string Name, string Img, float Data, string Describe, string Color) //IntroducesModel introModel
         {
             //Session["loginSession"] = "admin";
             //string Img = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
             //string extension = Path.GetExtension(imageModel.ImageFile.FileName);
             //Img = Img + DateTime.Now.ToString("yymmssfff") + extension;
-            string Img = introModel.ImageFile.FileName;
-            Img = Path.Combine(Server.MapPath("~/Images/"), Img);
-            if (System.IO.File.Exists(Img))
-            {
-                ViewBag.Text = "Image name is identical.";
-                return View();
-            }
-            else ViewBag.Text = "";
-            introModel.ImageFile.SaveAs(Img);
-            Img = introModel.ImageFile.FileName;
 
-            if (InsertIntroduces(introModel.Name, Img, introModel.Data, introModel.Describe, introModel.Color))
+            //string Img = introModel.ImageFile.FileName;
+            //Img = Path.Combine(Server.MapPath("~/Images/"), Img);
+            //if (System.IO.File.Exists(Img))
+            //{
+            //    ViewBag.Text = "Image name is identical.";
+            //    return View();
+            //}
+            //else ViewBag.Text = "";
+            //introModel.ImageFile.SaveAs(Img);
+            //Img = introModel.ImageFile.FileName;
+
+            if (InsertIntroduces(Name, Img, Data, Describe, Color))
             {
                 return RedirectToAction("Index", "IntroducesAdmin");
             }
@@ -66,6 +67,7 @@ namespace Demo.Areas.Admin.Controllers
         
         public ActionResult Edit(string Id)
         {
+            Session["loginSession"] = "admin";
             if (Id==null||!Check.isNumber(Id))
             {
                 Response.Redirect(Session["currentPage"].ToString());
@@ -82,15 +84,23 @@ namespace Demo.Areas.Admin.Controllers
 
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int Id,string Name, string Img, float Data, string Describe, string Color)
+        //public ActionResult Edit(int Id,string Name, string Img, float Data, string Describe, string Color)
+        //{
+        //    if(EditIntroduces(Id, Name, Img, Data, Describe, Color))
+        //    {
+        //        return RedirectToAction("Index", "IntroducesAdmin");
+        //    }
+        //    return View();
+        //}
+        public ActionResult Edit(IntroducesModel introModel)
         {
-            if(EditIntroduces(Id, Name, Img, Data, Describe, Color))
+            Session["loginSession"] = "admin";
+            if (EditIntroduces(introModel.Id, introModel.Name, introModel.ImageFile.FileName, introModel.Data, introModel.Describe, introModel.Color))
             {
                 return RedirectToAction("Index", "IntroducesAdmin");
             }
             return View();
         }
-
         bool EditIntroduces(int id, string name, string img, float data, string describe, string color)
         {
             return IntroducesDAO.Instance.EditIntroduces(id, name, img, data, describe, color);
@@ -126,13 +136,13 @@ namespace Demo.Areas.Admin.Controllers
 
         bool DeleteIntroduces(int id)
         {
-            IntroducesDTO intro = IntroducesDAO.Instance.GetIntroducts(id);
-            string img = intro.Img;
-            string fullPath = Request.MapPath("~/Images/" + img);
-            if (System.IO.File.Exists(fullPath))
-            {
-                System.IO.File.Delete(fullPath);
-            }
+            //IntroducesDTO intro = IntroducesDAO.Instance.GetIntroducts(id);
+            //string img = intro.Img;
+            //string fullPath = Server.MapPath("~/Images/" + img);
+            //if (System.IO.File.Exists(fullPath))
+            //{
+            //    System.IO.File.Delete(fullPath);
+            //}
             return IntroducesDAO.Instance.DeleteIntroduces(id);
         }
 
@@ -151,6 +161,6 @@ namespace Demo.Areas.Admin.Controllers
             Session["currentPage"] = Request.Url.AbsoluteUri;
             return View(intro);
         }
-
+        
     }
 }

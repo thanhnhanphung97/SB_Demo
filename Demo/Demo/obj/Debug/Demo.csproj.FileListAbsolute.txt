@@ -83,7 +83,6 @@ C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\SB_Demo\Dem
 C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\SB_Demo\Demo\Demo\obj\Debug\Demo.csproj.CopyComplete
 C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\SB_Demo\Demo\Demo\obj\Debug\Demo.dll
 C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\SB_Demo\Demo\Demo\obj\Debug\Demo.pdb
-D:\SB_Demo\Demo\Demo\bin\CKFinder.dll
 D:\SB_Demo\Demo\Demo\bin\CKFinder.pdb
 C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\SB_Demo\Demo\Demo\bin\CKFinder.dll
 C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\SB_Demo\Demo\Demo\bin\CKFinder.pdb
