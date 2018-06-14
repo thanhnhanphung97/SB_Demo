@@ -30,7 +30,7 @@ namespace Demo.Areas.Admin.Controllers
 
         [HttpPost,ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(string Name,string Img,string Describe,string Link)
+        public ActionResult Create(string Name,string Img,string Describe,string Link = null)
         {
             if (NewsDAO.Instance.InsertNews(Name, Img, Describe, Link))
             {
@@ -57,7 +57,7 @@ namespace Demo.Areas.Admin.Controllers
 
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int Id, string Name, string Img, string Describe, string Link)
+        public ActionResult Edit(int Id, string Name, string Img, string Describe, string Link = null)
         {
             if(NewsDAO.Instance.EditNews(Id, Name, Img, Describe, Link))
             {

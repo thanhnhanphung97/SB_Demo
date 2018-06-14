@@ -34,6 +34,7 @@ namespace Demo.Models.DAO
 
         public bool InsertNews(string name, string img, string describe, string link)
         {
+            link = "null";
             string query = "USP_Add_News @name , @img , @describe , @link";
             int result = DataProvider.Instance.ExecuteNonQuery(query,new object[] { name , img , describe , link });
             return result > 0;
@@ -41,6 +42,7 @@ namespace Demo.Models.DAO
 
         public bool EditNews(int id, string name, string img, string describe, string link)
         {
+            link = "null";
             string query = "USP_Edit_News @id , @name , @img , @describe , @link";
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { id, name, img, describe, link });
             return result > 0;

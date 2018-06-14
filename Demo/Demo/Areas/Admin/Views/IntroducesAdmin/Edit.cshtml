@@ -16,18 +16,27 @@
 <!-- Include Editor style. -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
-<link href="~/Scripts/froala-editor/css/froala_style.min.css" rel="stylesheet" />
+<link href="~/Scripts/froala-editor/css/froala_style.min.css" rel="stylesheet" type="text/javascript" />
 
 @section jsFooter{
     <script>
         $('#btnSelectedImage').on('click', function (e) {
             e.preventDefault();
-                var finder = new CKFinder();
-                finder.selectActionFunction = function (url) {
-                    $('#txtImage').val(url);
-                }
-                finder.popup();
-            })
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url);
+                document.getElementById("image").src = url;
+            }
+            finder.popup();
+        })
+    </script>
+
+    <script>
+        function change() {
+            var get = document.getElementById("getColor").value;
+            document.getElementById("txtColor").value = get;
+
+        }
     </script>
 }
 
@@ -53,8 +62,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Img , new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;", @readonly = "readonly", id = "txtImage"})
-                <a id="btnSelectedImage" href="#">Chọn ảnh</a>
+                @Html.TextBoxFor(model => model.Img, new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;display:none;", id = "txtImage" })
+                <a id="btnSelectedImage" href="#" class="btn">Chọn ảnh</a>
+                @{
+                    string s = Model.Img;
+                }
+                <div id="divimg" style="float:right;margin-right:70.5%; border:1px solid;"><img src=@s height="125" width="175" id="image" /></div>
                 @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -77,7 +90,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Color, new { @style = "float:left; width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;padding: 6px 12px;", @readonly = "readonly", id = "txtColor" })
+                @{ 
+                    string c = Model.Color;
+                }
+                <input type="color" id="getColor" style="height:34px; float: left; margin-left: 10px;" onchange="change()" value="@c"/>
                 @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
             </div>
         </div>

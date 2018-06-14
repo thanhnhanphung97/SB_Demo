@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+@*<h2>Create</h2>*@
 
 <!-- Include external CSS. -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -23,6 +23,8 @@
                 var finder = new CKFinder();
                 finder.selectActionFunction = function (url) {
                     $('#txtImage').val(url);
+                    document.getElementById("image").src = url;
+                    document.getElementById("divimg").style.display = 'block';
                 }
                 finder.popup();
             })
@@ -32,9 +34,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    <div style="font-size:17px; margin-top:20px; margin-bottom:20px;"><strong>New Partners</strong></div>
     <div class="form-horizontal">
-        <h4>PartnersDTO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -48,8 +49,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Img, new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;", @readonly = "readonly", id = "txtImage" })
-                <a id="btnSelectedImage" href="#">Chọn ảnh</a>
+                @Html.TextBoxFor(model => model.Img, new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;display:none;", @readonly = "readonly", id = "txtImage" })
+                <a id="btnSelectedImage" href="#" class="btn">Chọn ảnh</a>
+                <div id="divimg" style="float:right;display:none;margin-right:70.5%;"><img src="" height="125" width="175" id="image" /></div>
                 @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
             </div>
         </div>

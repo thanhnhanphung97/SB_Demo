@@ -3,27 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @*<link href="~/Content/bootstrap-theme.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/cms-navigation-base.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/cms-navigation.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/crellyslider.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/css(1)" type="text/css" rel="stylesheet" />
-        <link href="~/Content/css(2)" type="text/css" rel="stylesheet" />
-        <link href="~/Content/font-awesome.min.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/frontend.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/magnific_popup.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/navigation.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/responsive.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/shortcodes.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/shortcodes_responsive.css" type="text/css" rel="stylesheet" />
-        <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />*@
 
 </head>
 <body>
@@ -51,15 +33,15 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        </footer>*@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="/Assets/plugins/ckfinder.js"></script>
     @RenderSection("scripts", required: false)
-    @RenderSection("jsFooter",required:false)
+    @RenderSection("jsFooter", required: false)
 
 
 </body>

@@ -94,7 +94,7 @@ namespace Demo.Areas.Admin.Controllers
         //}
         public ActionResult Edit(int Id,string Name, string Img, float Data, string Describe, string Color)
         {
-            Session["loginSession"] = "admin";
+            //Session["loginSession"] = "admin";
             if (EditIntroduces(Id, Name, Img, Data, Describe, Color))
             {
                 return RedirectToAction("Index", "IntroducesAdmin");

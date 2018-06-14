@@ -13,19 +13,32 @@
 <!-- Include Editor style. -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
-<link href="~/Scripts/froala-editor/css/froala_style.min.css" rel="stylesheet" />
-
+<link href="~/Scripts/froala-editor/css/froala_style.min.css" rel="stylesheet" type="text/javascript" />
+<link href="~/Scripts/DevExtreme/dx.common.css" rel="stylesheet" type="text/css" />
+<link href="~/Scripts/DevExtreme/dx.light.css" rel="stylesheet" type="text/css" />
 @section jsFooter{
     <script>
         $('#btnSelectedImage').on('click', function (e) {
             e.preventDefault();
-                var finder = new CKFinder();
-                finder.selectActionFunction = function (url) {
-                    $('#txtImage').val(url);
-                }
-                finder.popup();
-            })
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url);
+                document.getElementById("image").src = url;
+                document.getElementById("divimg").style.display = 'block';
+            }
+            finder.popup();
+        })
     </script>
+
+    <script>
+        function change() {
+            var get = document.getElementById("getColor").value;
+            document.getElementById("txtColor").value = get;
+            
+        }
+    </script>
+
+
 }
 
 @*"Create", "IntroducesAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }*@
@@ -48,8 +61,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Img , new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;", @readonly = "readonly", id = "txtImage"})
-                <a id="btnSelectedImage" href="#">Chọn ảnh</a>
+                @Html.TextBoxFor(model => model.Img, new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;display:none;", @readonly = "readonly", id = "txtImage" })
+                <a id="btnSelectedImage" href="#" class="btn">Chọn ảnh</a>
+                <div id="divimg" style="float:right;display:none;margin-right:70.5%;border:1px solid;"><img src="" height="125" width="175" id="image" /></div>
                 @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
                 @*<input type="file" name="ImageFile" required>
                     <div style="color:red;">@ViewBag.Text</div>*@
@@ -75,12 +89,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@(Html.Kendo().ColorPicker()
-                            .Name("picker")
-                            .Value("#ffffff")
-                            .Events(events => events.Select("preview"))
-                    )*@
-                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control", @style = "display:none;" }, id = "txtColor" })*@
+                @Html.TextBoxFor(model => model.Color, new { @style = "float:left; width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;padding: 6px 12px;", @readonly = "readonly", id = "txtColor" } )
+                <input type="color" id="getColor" style="height:34px; float: left; margin-left: 10px;" onchange="change()"/>
                 @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -104,6 +115,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
     <script src="~/Scripts/froala-editor/js/froala_editor.pkgd.min.js"></script>
     <script>$(function () { $('textarea').froalaEditor() });</script>
+    <script>$(function () { document.getElementById("txtColor").value = document.getElementById("getColor").value; });</script>
     <script src="~/Areas/Admin/Assets/ckfinder/ckfinder.js"></script>
+    <script src="~/Scripts/DevExtreme/dx.web.js"></script>
+    <script src="~/Scripts/DevExtreme/globalize.min.js"></script>
     @*<script src="~/Scripts/main.js"></script>*@
 }

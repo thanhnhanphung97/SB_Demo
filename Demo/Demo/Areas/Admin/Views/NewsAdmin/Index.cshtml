@@ -10,21 +10,18 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table" cellpadding="10" cellspacing="10">
     <tr>
-        <th>
+        <th width="150">
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
+        <th width="200">
             @Html.DisplayNameFor(model => model.Img)
         </th>
-        <th>
+        <th width="450">
             @Html.DisplayNameFor(model => model.Describe)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Link)
-        </th>
-        <th></th>
+        <th width="200">#</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -33,13 +30,10 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            <img src=@item.Img height="125" width="175"/>
+            <img src=@item.Img height="125" width="175" style="border: 1px solid;"/>
         </td>
         <td>
             @Html.Raw(item.Describe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Link)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
