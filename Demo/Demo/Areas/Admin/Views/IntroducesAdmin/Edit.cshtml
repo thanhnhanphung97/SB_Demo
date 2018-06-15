@@ -38,6 +38,8 @@
 
         }
     </script>
+
+
 }
 
 
@@ -46,7 +48,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>introduce</h4>
+        <h4>Introduce</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -63,11 +65,7 @@
             @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Img, new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;display:none;", id = "txtImage" })
-                <a id="btnSelectedImage" href="#" class="btn">Chọn ảnh</a>
-                @{
-                    string s = Model.Img;
-                }
-                <div id="divimg" style="float:right;margin-right:70.5%; border:1px solid;"><img src=@s height="125" width="175" id="image" /></div>
+                <a id="btnSelectedImage" href="#" class="btn"><div style="border:1px black solid;height:150px;width:150px;"><img src=@Model.Img height="150" width="150" id="image" style="background-color:lightgrey;" /></div></a>
                 @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -90,11 +88,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Color, new { @style = "float:left; width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;padding: 6px 12px;", @readonly = "readonly", id = "txtColor" })
-                @{ 
+                @Html.TextBoxFor(model => model.Color, new { @style = "float:left; width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;padding: 6px 12px;display:none;", @readonly = "readonly", id = "txtColor" })
+                @{
                     string c = Model.Color;
                 }
-                <input type="color" id="getColor" style="height:34px; float: left; margin-left: 10px;" onchange="change()" value="@c"/>
+                <input type="color" id="getColor" style="height:34px; float: left; margin-left: 10px;" onchange="change()" value="@c" />
                 @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -118,4 +116,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
     <script src="~/Scripts/froala-editor/js/froala_editor.pkgd.min.js"></script>
     <script>$(function () { $('textarea').froalaEditor() });</script>
+    <script>$(function () { document.getElementById("txtColor").value = document.getElementById("getColor").value; });</script>
 }

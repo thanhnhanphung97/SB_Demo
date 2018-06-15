@@ -4,7 +4,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index Introduces</h2>
+<div style="font-size:30px; text-align:center; height: 30px; padding: 5px; margin: 20px;"><strong>Introduces List</strong></div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -36,7 +36,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <img src=@item.Img height="125" width="175" style="border: 1px solid;"/>
+                <img src=@item.Img height="150" width="150" style="border: 1px solid;background-color:lightgrey;"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Data)
@@ -45,7 +45,7 @@
                 @Html.Raw(item.Describe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Color)
+                <input type="color" style="height:34px; float: left;" disabled="disabled" value=@item.Color />
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { Id = item.Id.ToString() }) |

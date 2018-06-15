@@ -23,14 +23,16 @@
     <script>
         $('#btnSelectedImage').on('click', function (e) {
             e.preventDefault();
-                var finder = new CKFinder();
-                finder.selectActionFunction = function (url) {
-                    $('#txtImage').val(url);
-                    document.getElementById("image").src = url;
-                }
-                finder.popup();
-            })
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url);
+                document.getElementById("image").src = url;
+            }
+            finder.popup();
+        })
     </script>
+
+
 }
 
 @using (Html.BeginForm())
@@ -38,7 +40,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>NewsDTO</h4>
+        <h4>News</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -55,11 +57,7 @@
             @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Img, new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;display:none;", @readonly = "readonly", id = "txtImage" })
-                <a id="btnSelectedImage" href="#" class="btn">Chọn ảnh</a>
-                @{
-                    string s = Model.Img;
-                }
-                <div id="divimg" style="float:right;margin-right:70.5%;border:1px solid;"><img src=@s height="125" width="175" id="image" /></div>
+                <a id="btnSelectedImage" href="#" class="btn"><div style="border:1px black solid;height:125px;width:175px;"><img src=@Model.Img height="125" width="175" id="image" style="background-color:lightgrey;" /></div></a>
                 @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -26,20 +26,14 @@
             finder.selectActionFunction = function (url) {
                 $('#txtImage').val(url);
                 document.getElementById("image").src = url;
-                document.getElementById("divimg").style.display = 'block';
+                document.getElementById("image").style.backgroundColor = 'lightgrey';
+                document.getElementById("image").hidden = false;
             }
             finder.popup();
         })
     </script>
 
-    <script>
-        $(function () {
-            $("color-box-simple").dxColorBox({
-                value: "#f05b41"
-            });
-        });
 
-    </script>
 }
 
 @using (Html.BeginForm())
@@ -47,7 +41,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>NewsDTO</h4>
+        <h4>News</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -62,8 +56,7 @@
             @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Img, new { @style = "width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;display:none;", @readonly = "readonly", id = "txtImage" })
-                <a id="btnSelectedImage" href="#">Chọn ảnh</a>
-                <div id="divimg" style="float:right;display:none;margin-right:70.5%;"><img src="" height="125" width="175" id="image" /></div>
+                <a id="btnSelectedImage" href="#" class="btn"><div style="border:1px black solid;height:125px;width:175px;"><img src="" height="125" width="175" id="image" hidden="hidden" /></div></a>
                 @Html.ValidationMessageFor(model => model.Img, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -77,12 +70,12 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -4,5 +4,38 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Đây là Trang Home Admin</h2>
-<h2>@ViewBag.Text</h2>
+@section jsFooter{
+
+    <script>
+        function mouseinIntroduce() {
+            document.getElementById("in").style.width = "24%";
+        }
+        function mouseoutIntroduce() {
+            document.getElementById("in").style.width = "16%";
+        }
+        
+        function mouseinNew() {
+            document.getElementById("ne").style.width = "24%";
+        }
+        function mouseoutNew() {
+            document.getElementById("ne").style.width = "16%";
+        }
+        
+        function mouseinPartner() {
+            document.getElementById("pa").style.width = "24%";
+        }
+        function mouseoutPartner() {
+            document.getElementById("pa").style.width = "16%";
+        }
+    </script>
+
+
+}
+
+<div style="background-color:#89b51e;color:white;border-radius:4px;height:50px;padding-left:50px;font-size:25px;margin-top:25px;font-weight:bold;">Login succesful!</div>
+<div style="background-color:purple;margin-top:50px;height:65px;font-size:40px;font-weight:bold;padding-left:15px;border-radius:6px;border-top-right-radius:59px;color:white;width:40%;">MANAGE</div>
+<a href="/Admin/IntroducesAdmin" style="color:white;text-decoration:none;"><div style="background-color:mediumpurple;width:16%;height:50px;padding-top:06px;padding-bottom:6px;border-radius:15px;border-bottom-right-radius:44px;font-size:25px;font-weight:bold;margin-top:15px;margin-left:1%;padding-left:15px;" onmouseover="mouseinIntroduce()" onmouseout="mouseoutIntroduce()" id="in"><img src="~/Images/plus.png" height="25" width="25" style="margin-left:-8px;margin-right:4px;" />Introduces</div></a>
+
+<a href="/Admin/NewsAdmin" style="color:white;text-decoration:none;"><div style="background-color:mediumpurple;width:16%;height:50px;padding-top:06px;padding-bottom:6px;border-radius:15px;border-bottom-right-radius:44px;font-size:25px;font-weight:bold;margin-top:15px;margin-left:1%;padding-left:15px;" onmouseover="mouseinNew()" onmouseout="mouseoutNew()" id="ne"><img src="~/Images/plus.png" height="25" width="25" style="margin-left:-8px;margin-right:4px;" />News</div></a>
+
+<a href="/Admin/PartnersAdmin" style="color:white;text-decoration:none;"><div style="background-color:mediumpurple;width:16%;height:50px;padding-top:06px;padding-bottom:6px;border-radius:15px;border-bottom-right-radius:44px;font-size:25px;font-weight:bold;margin-top:15px;margin-left:1%;padding-left:15px;" onmouseover="mouseinPartner()" onmouseout="mouseoutPartner()" id="pa"><img src="~/Images/plus.png" height="25" width="25" style="margin-left:-8px;margin-right:4px;" />Partners</div></a>

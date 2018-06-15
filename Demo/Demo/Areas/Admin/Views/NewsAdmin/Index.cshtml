@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div style="font-size:30px; text-align:center; height: 30px; padding: 5px; margin: 20px;"><strong>News List</strong></div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -30,7 +30,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            <img src=@item.Img height="125" width="175" style="border: 1px solid;"/>
+            <img src=@item.Img height="125" width="175" style="border: 1px solid;background-color:lightgrey;"/>
         </td>
         <td>
             @Html.Raw(item.Describe)

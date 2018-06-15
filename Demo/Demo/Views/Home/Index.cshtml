@@ -11,7 +11,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="height:500px;width:1600px;margin-left:-250px;">
+@{int sz = introduces.Capacity, h = 300 + 300 * (sz / 4 + (sz % 4 != 0 ? 1 : 0));
+    string height = h.ToString() + "px";
+    }
+<div style="height:@height;width:1600px;margin-left:-250px;">
     <h2 style="text-align:center;margin-bottom:100px;">ITELYA introduces itself.</h2>
     <p style="text-align:center;margin-bottom:100px;margin-top:50px;color:dimgray;font-size:20px;width:1200px;margin-left:250px;">itelya creates a whole new world for travel expenses. With smart.billing – a purely cloud-based software – the company facilitates services according to international standards.</p>
     @foreach (var item in introduces)
@@ -39,7 +42,7 @@
     }
 </div>
 <br />
-<div style="margin-top:200px;margin-bottom:50px;height:500px;width:1700px;margin-left:-200px;">
+<div style="margin-top:100px;margin-bottom:50px;height:500px;width:1700px;margin-left:-200px;">
     <h2 style="text-align:center;margin-bottom:100px;margin-left:-200px;">NEWS</h2>
     @{
         int num = 0;
@@ -51,7 +54,7 @@
             <div style="float:left;height:500px;width:350px;margin-right:40px;">
                 <div>
                     @{@*String img = "/Images/" + item.Img;*@
-                        String link = "/news/Details/" + item.Id;
+                    String link = "/news/Details/" + item.Id;
                     }
                     <a href=@link><img src=@item.Img alt="" height="250" width="350" /></a>
                 </div>

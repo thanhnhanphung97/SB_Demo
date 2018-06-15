@@ -33,13 +33,13 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            <img src=@item.Img height="125" width="175" style="border: 1px solid;" />
+            <img src=@item.Img height="125" width="125" style="border: 1px solid;background-color:lightgrey;" />
         </td>
         <td>
             @Html.Raw(item.Describe)
         </td>
         <td>
-            <img src=@item.Background height="125" width="175" style="border: 1px solid;" />
+            <img src=@item.Background height="125" width="175" style="border: 1px solid;background-color:lightgrey;" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

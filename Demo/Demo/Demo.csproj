@@ -951,6 +951,7 @@
     <Content Include="Images\navigation.css" />
     <Content Include="Images\payment-source.png" />
     <Content Include="Images\pci.png" />
+    <Content Include="Images\plus.png" />
     <Content Include="Images\rentalcar.jpg" />
     <Content Include="Images\responsive.css" />
     <Content Include="Images\sb-logo2.png" />
