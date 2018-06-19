@@ -1090,10 +1090,6 @@
     <Content Include="Areas\Admin\Views\IntroducesAdmin\Create.cshtml" />
     <Content Include="Scripts\core.min.js" />
     <Content Include="Scripts\custom.js" />
-    <Content Include="Scripts\DevExtreme\dx.common.css" />
-    <Content Include="Scripts\DevExtreme\dx.light.css" />
-    <Content Include="Scripts\DevExtreme\dx.web.js" />
-    <Content Include="Scripts\DevExtreme\globalize.min.js" />
     <Content Include="Scripts\fitvids.min.js" />
     <Content Include="Scripts\froala-editor\css\froala_editor.css" />
     <Content Include="Scripts\froala-editor\css\froala_editor.min.css" />

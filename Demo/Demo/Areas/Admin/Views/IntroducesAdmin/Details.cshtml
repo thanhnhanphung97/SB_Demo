@@ -5,55 +5,31 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Introduce</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Img)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Img)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Data)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Describe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model=>model.Describe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-
-    </dl>
+<div style="margin-left:33%;">
+    @{String color = "text-align:center;" + "background-color:" + Model.Color + ";height:300px;width:400px;"; }
+    <div style=@color>
+        <div style="margin-top:30px;">
+            @*@{String img = "/Images/" + item.Img;}*@
+            <img src=@Model.Img alt="" height="140" width="140" />
+        </div>
+        <div style="color:white;">
+            <div style="font-size:60px;font-weight:bold;">
+                @Model.Data
+                @if (Model.Data != (int)(Model.Data))
+                {
+                    char percent = '%';
+                    @Html.DisplayFor(modelItem => percent)}
+                <br />
+            </div>
+            <div style="font-size:20px;">
+                @Html.Raw(@Model.Describe)
+            </div>
+        </div>
+    </div>
 </div>
-<p>
+
+<br/>
+<p style="text-align:center;">
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
