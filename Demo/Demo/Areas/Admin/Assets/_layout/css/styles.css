@@ -138,6 +138,12 @@ input.form-control {
   background-color: rgba(255, 255, 255, 0.2);
   background: none; }
 
+.nav > li > div:hover, .nav > li > div:focus, .nav .open > div, .nav .open > div:hover, .nav .open > div:focus {
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  background: none;
+}
+
 .dropdown-messages {
   border: 1px solid #fff;
   width: 360px;
@@ -788,7 +794,17 @@ a.label:hover, a.label:focus {
   background-color: #30a5ff;
   color: #fff; }
 
+.sidebar ul.nav div:hover, .sidebar ul.nav li.parent ul li div:hover {
+    background-color: #30a5ff;
+    color: #fff;
+    cursor:pointer;
+}
+
 .sidebar ul.nav .active a, .sidebar ul.nav li.parent a.active, .sidebar ul.nav .active > a:hover, .sidebar ul.nav li.parent a.active:hover, .sidebar ul.nav .active > a:focus, .sidebar ul.nav li.parent a.active:focus {
+  color: #fff;
+  background-color: #30a5ff; }
+
+.sidebar ul.nav .active div, .sidebar ul.nav li.parent div.active, .sidebar ul.nav .active > div:hover, .sidebar ul.nav li.parent div.active:hover, .sidebar ul.nav .active > div:focus, .sidebar ul.nav li.parent div.active:focus {
   color: #fff;
   background-color: #30a5ff; }
 
@@ -802,6 +818,13 @@ a.label:hover, a.label:focus {
   line-height: 2em;
   color: #444444; }
 
+.sidebar ul.nav li div {
+    height: 50px;
+    font-size: 15px;
+    line-height: 2em;
+    color: #444444;
+}
+
 .sidebar ul.nav ul.children {
   width: auto;
   padding: 0;
@@ -813,9 +836,19 @@ a.label:hover, a.label:focus {
   background: #f1f4f7;
   color: #444444; }
 
+.sidebar ul.nav ul.children li div {
+  height: 40px;
+  background: #f1f4f7;
+  color: #444444; }
+
 .sidebar ul.nav li.current a {
   background-color: #30a5ff;
   color: #fff !important; }
+
+.sidebar ul.nav li.current div {
+    background-color: #30a5ff;
+    color: #fff !important;
+}
 
 .sidebar ul.nav li.parent ul li a {
   border: none;
@@ -823,6 +856,14 @@ a.label:hover, a.label:focus {
   padding-left: 30px;
   line-height: 40px;
   border-radius: 0; }
+
+.sidebar ul.nav li.parent ul li div {
+    border: none;
+    display: block;
+    padding-left: 30px;
+    line-height: 40px;
+    border-radius: 0;
+}
 
 .sidebar ul.nav li.divider {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -1031,3 +1072,10 @@ p.back-link {
   margin-bottom: 20px;
   font-size: 12px;
   text-transform: uppercase; }
+
+.sidebar > ul > li > div {
+    padding:15px;
+}
+.sidebar > ul {
+    margin-top: 0px;
+}

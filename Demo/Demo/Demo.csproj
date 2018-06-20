@@ -201,7 +201,10 @@
     <Content Include="Areas\Admin\Assets\_layout\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Areas\Admin\Assets\_layout\images\fff.png" />
     <Content Include="Areas\Admin\Assets\_layout\images\ffff.png" />
+    <Content Include="Areas\Admin\Assets\_layout\images\home.png" />
+    <Content Include="Areas\Admin\Assets\_layout\images\introduce.png" />
     <Content Include="Areas\Admin\Assets\_layout\images\logout.png" />
+    <Content Include="Areas\Admin\Assets\_layout\images\partners.png" />
     <Content Include="Areas\Admin\Assets\_layout\js\bootstrap-datepicker.js" />
     <Content Include="Areas\Admin\Assets\_layout\js\bootstrap.js" />
     <Content Include="Areas\Admin\Assets\_layout\js\bootstrap.min.js" />

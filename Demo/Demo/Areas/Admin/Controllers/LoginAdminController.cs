@@ -14,6 +14,7 @@ namespace Demo.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            Session["loginSession"] = null;
             return View();
         }
         
