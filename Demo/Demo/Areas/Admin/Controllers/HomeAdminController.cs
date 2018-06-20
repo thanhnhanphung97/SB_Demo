@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using Demo.Models;
 using Demo.Models.DTO;
+using Demo.Areas.Admin.Models;
+
 namespace Demo.Areas.Admin.Controllers
 {
     public class HomeAdminController : Controller
