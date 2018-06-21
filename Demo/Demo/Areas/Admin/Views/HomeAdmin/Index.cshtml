@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Demo.Models.DTO.IntroducesDTO>
-@using Demo.Models.DAO;
+﻿@using Demo.Models.DAO;
 @using Demo.Models.DTO;
 @{
     ViewBag.Title = "Index";
@@ -8,56 +7,38 @@
 }
 
 @section jsFooter{
-
+    
 
 }
 
-@*<div id="intro1" style="display:none;">
-    <div style="font-size:30px; text-align:center; height: 30px; padding: 5px; margin: 20px;"><strong>Introduces List</strong></div>
+<div id="home1" style="display:block;">
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <h2>Home Admin</h2>
+
+</div>
+
+
+<div id="intro1" style="display:none;">
+    <div style="font-size:30px; text-align:center; height: 30px; padding: 5px; margin: 20px;"><strong>Introduces List</strong></div>
+    <p>@Html.ActionLink("Create New", "Create")</p>
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Img)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Data)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Describe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
+            <th>Name</th>
+            <th>Img</th>
+            <th>Data</th>
+            <th>Describe</th>
+            <th>Color</th>
             <th>#</th>
         </tr>
-        @{
-            List<IntroducesDTO> list = IntroducesDAO.Instance.GetListIntroducts();
-        }
-        @foreach (var item in list)
+        @{List<IntroducesDTO> listintro = IntroducesDAO.Instance.GetListIntroducts();}
+        @foreach (var item in listintro)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    <img src=@item.Img height="150" width="150" style="border: 1px solid;background-color:lightgrey;" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Data)
-                </td>
-                <td>
-                    @Html.Raw(item.Describe)
-                </td>
-                <td>
-                    <input type="color" style="height:34px; float: left;" disabled="disabled" value=@item.Color />
-                </td>
+                <td>@Html.Raw(item.Name)</td>
+                <td><img src=@item.Img height="150" width="150" style="border: 1px solid;background-color:lightgrey;" /></td>
+                <td>@Html.Raw(item.Data)</td>
+                <td>@Html.Raw(item.Describe)</td>
+                <td><input type="color" style="height:34px; float: left;" disabled="disabled" value=@item.Color /></td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { Id = item.Id.ToString() }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
@@ -65,10 +46,66 @@
                 </td>
             </tr>
         }
-
     </table>
-</div>*@
-<div id="home1" style="display:block;"><h2>Home Admin</h2></div>
-<div id="intro1" style="display:none;"><h2>Intro</h2></div>
-<div id="news1" style="display:none;"><h2>News</h2></div>
-<div id="partners1" style="display:none;"><h2>Partners</h2></div>
+</div>
+
+
+<div id="news1" style="display:none;">
+    <div style="font-size:30px; text-align:center; height: 30px; padding: 5px; margin: 20px;"><strong>News List</strong></div>
+    <p>@Html.ActionLink("Create New", "Create")</p>
+    <table class="table" cellpadding="10" cellspacing="10">
+        <tr>
+            <th width="150">Name</th>
+            <th width="200">Img</th>
+            <th width="450">Describe</th>
+            <th width="200">#</th>
+        </tr>
+        @{ List<NewsDTO> listnew = NewsDAO.Instance.GetListNews();}
+        @foreach (var item in listnew)
+        {
+            <tr>
+                <td>@Html.Raw(item.Name)</td>
+                <td><img src=@item.Img height="125" width="175" style="border: 1px solid;background-color:lightgrey;" /></td>
+                <td>@Html.Raw(item.Describe)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<div id="partners1" style="display:none;">
+    <div style="font-size:30px; text-align:center; height: 30px; padding: 5px; margin: 20px;"><strong>Partners List</strong></div>
+    <p><div style="font-size:17px;">@Html.ActionLink("Create New", "Create")</div></p>
+    <table class="table">
+        <tr>
+            <th width="150">Name</th>
+            <th>Img</th>
+            <th width="470">Describe</th>
+            <th>Background</th>
+            <th width="200">#</th>
+        </tr>
+        @{ List<PartnersDTO> listpartners = PartnersDAO.Instance.GetListPartners();}
+        @foreach (var item in listpartners)
+        {
+            <tr>
+                <td>@Html.Raw(item.Name)</td>
+                <td><img src=@item.Img height="125" width="125" style="border: 1px solid;background-color:lightgrey;" /></td>
+                <td>@Html.Raw(item.Describe)</td>
+                <td><img src=@item.Background height="125" width="175" style="border: 1px solid;background-color:lightgrey;" /></td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+

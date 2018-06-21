@@ -188,6 +188,7 @@
     <Content Include="Areas\Admin\Assets\dist\js\sb-admin-2.min.js" />
     <Content Include="Areas\Admin\Assets\editor\editor.css" />
     <Content Include="Areas\Admin\Assets\editor\editor.js" />
+    <Content Include="Areas\Admin\Assets\js\sp-form-admin.js" />
     <Content Include="Areas\Admin\Assets\_layout\css\bootstrap-table.css" />
     <Content Include="Areas\Admin\Assets\_layout\css\bootstrap-theme.css" />
     <Content Include="Areas\Admin\Assets\_layout\css\bootstrap-theme.min.css" />
