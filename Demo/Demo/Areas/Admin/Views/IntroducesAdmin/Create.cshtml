@@ -14,8 +14,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 <link href="~/Scripts/froala-editor/css/froala_style.min.css" rel="stylesheet" type="text/javascript" />
-<link href="~/Scripts/DevExtreme/dx.common.css" rel="stylesheet" type="text/css" />
-<link href="~/Scripts/DevExtreme/dx.light.css" rel="stylesheet" type="text/css" />
 @section jsFooter{
     <script>
         $('#btnSelectedImage').on('click', function (e) {
@@ -38,8 +36,6 @@
             
         }
     </script>
-
-
 }
 
 @*"Create", "IntroducesAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }*@
@@ -117,7 +113,5 @@
     <script>$(function () { $('textarea').froalaEditor() });</script>
     <script>$(function () { document.getElementById("txtColor").value = document.getElementById("getColor").value; });</script>
     <script src="~/Areas/Admin/Assets/ckfinder/ckfinder.js"></script>
-    <script src="~/Scripts/DevExtreme/dx.web.js"></script>
-    <script src="~/Scripts/DevExtreme/globalize.min.js"></script>
     @*<script src="~/Scripts/main.js"></script>*@
 }

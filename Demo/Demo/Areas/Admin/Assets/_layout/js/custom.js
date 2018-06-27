@@ -9,12 +9,7 @@ $('#calendar').datepicker({
 }
 
 (window.jQuery);
-	$(window).on('resize', function () {
-  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-})
-$(window).on('resize', function () {
-  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-})
+	
 
 $(document).on('click', '.panel-heading span.clickable', function(e){
     var $this = $(this);
