@@ -62,5 +62,49 @@ namespace Demo.Areas.Admin.Controllers
         {
             return IntroducesDAO.Instance.DeleteIntroduces(id);
         }
+
+
+        //Partners controller
+        public JsonResult GetAllPartners()
+        {
+            var listpartner = PartnersDAO.Instance.GetListPartners();
+            return Json(listpartner, JsonRequestBehavior.AllowGet);
+        }
+        public string AddPartner(PartnersModel partner)
+        {
+            if (InsertPartner(partner.Name, partner.Img, partner.Describe, partner.Background)) return "Success";
+            else return "Fail";
+        }
+        bool InsertPartner(string name, string img, string describe, string background)
+        {
+            return PartnersDAO.Instance.InsertPartners(name, img, describe, background);
+        }
+        public JsonResult getPartnerById(string Id)
+        {
+            var partner = PartnersDAO.Instance.GetPartners(int.Parse(Id));
+            return Json(partner, JsonRequestBehavior.AllowGet);
+        }
+        public string UpdatePartner(PartnersModel partner)
+        {
+            int no = Convert.ToInt32(partner.Id);
+            if (EditPartner(no, partner.Name, partner.Img, partner.Describe, partner.Background)) return "Partners Updated";
+            else return "Invalid Partners";
+        }
+        bool EditPartner(int id, string name, string img, string describe, string background)
+        {
+            return PartnersDAO.Instance.EditPartners(id, name, img, describe, background);
+        }
+        public string DeletePartner(int id)
+        {
+            //int no = Convert.ToInt32(Intro.Id);
+            if (DeletePart(id)) return "Partner Deleted";
+            else return "Invalid Partner";
+        }
+        bool DeletePart(int id)
+        {
+            return PartnersDAO.Instance.DeletePartners(id);
+        }
+
+
     }
 }
