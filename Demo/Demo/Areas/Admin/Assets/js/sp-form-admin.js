@@ -58,7 +58,6 @@ app.service('myService', function ($http) {
         return response;
     }
 
-<<<<<<< HEAD
     this.getNews = function () {
         return $http.get("HomeAdmin/GetAllN");
     };
@@ -69,7 +68,10 @@ app.service('myService', function ($http) {
             method: "post",
             url: "HomeAdmin/AddNew",
             data: JSON.stringify(New),
-=======
+            dataType: "json"
+        });
+        return response;
+    }
     //
     ////////////////// Partners/////////////////////
     //
@@ -85,13 +87,11 @@ app.service('myService', function ($http) {
             method: "post",
             url: "HomeAdmin/AddPartner",
             data: JSON.stringify(partner),
->>>>>>> c6e58068ead8e53c99d0e196f811f3b56eccc692
             dataType: "json"
         });
         return response;
     }
 
-<<<<<<< HEAD
     // get introduce By Id
     this.getN = function (NewID) {
         var response = $http({
@@ -99,7 +99,10 @@ app.service('myService', function ($http) {
             url: "HomeAdmin/getNewByNo",
             params: {
                 id: JSON.stringify(NewID)
-=======
+            }
+        });
+        return response;
+    }
     // get partner By Id
     this.getPart = function (partnerId) {
         var response = $http({
@@ -107,33 +110,32 @@ app.service('myService', function ($http) {
             url: "HomeAdmin/getPartnerById",
             params: {
                 id: JSON.stringify(partnerId)
->>>>>>> c6e58068ead8e53c99d0e196f811f3b56eccc692
             }
         });
         return response;
     }
 
-<<<<<<< HEAD
     // Update introduce
     this.updateN = function (New) {
         var response = $http({
             method: "post",
             url: "HomeAdmin/UpdateNew",
             data: JSON.stringify(New),
-=======
+            dataType: "json"
+        });
+        return response;
+    }
     // Update partner
     this.updatePart = function (partner) {
         var response = $http({
             method: "post",
             url: "HomeAdmin/UpdatePartner",
             data: JSON.stringify(partner),
->>>>>>> c6e58068ead8e53c99d0e196f811f3b56eccc692
             dataType: "json"
         });
         return response;
     }
 
-<<<<<<< HEAD
     //Delete introduce
     this.DeleteN = function (NewID) {
         var response = $http({
@@ -141,7 +143,10 @@ app.service('myService', function ($http) {
             url: "HomeAdmin/DeleteNew",
             params: {
                 Id: JSON.stringify(NewID)
-=======
+                }
+        })
+        return response;
+    }
     //Delete partner
     this.DeletePart = function (partnerId) {
         var response = $http({
@@ -149,7 +154,6 @@ app.service('myService', function ($http) {
             url: "HomeAdmin/DeletePartner",
             params: {
                 Id: JSON.stringify(partnerId)
->>>>>>> c6e58068ead8e53c99d0e196f811f3b56eccc692
             }
         })
         return response;
@@ -267,7 +271,6 @@ app.controller('myIntroCntrl', function ($scope, myService) {
         $('#textFroalaIntro').froalaEditor('html.set', "");
         $scope.describeIntro = null;
         $scope.colorIntro = null;
-<<<<<<< HEAD
 
         $scope.idN = null;
         $scope.nameN = null;
@@ -276,16 +279,7 @@ app.controller('myIntroCntrl', function ($scope, myService) {
         document.getElementById('imageN').style.display = "none";
         $('#textFroalaN').froalaEditor('html.set', "");
         $scope.describeN = null;
-    }
-
-    GetAllNew();
-    function GetAllNew() {
-        debugger;
-        var getData = myService.getNews();
-        debugger;
-        getData.then(function (N) {
-            $scope.News = N.data;
-=======
+        
         //
         //partners
         //
@@ -302,6 +296,20 @@ app.controller('myIntroCntrl', function ($scope, myService) {
         ///
         //
         //
+        
+        
+    }
+
+    GetAllNew();
+    function GetAllNew() {
+        debugger;
+        var getData = myService.getNews();
+        debugger;
+        getData.then(function (N) {
+            $scope.News = N.data;
+        }, function () {
+            toastr.error("Error!", "Notification");
+        });
     }
 
     //
@@ -317,13 +325,11 @@ app.controller('myIntroCntrl', function ($scope, myService) {
         //debugger;
         getData.then(function (part) {
             $scope.partners = part.data;
->>>>>>> c6e58068ead8e53c99d0e196f811f3b56eccc692
         }, function () {
             toastr.error("Error!", "Notification");
         });
     }
 
-<<<<<<< HEAD
     $scope.editNew = function (New) {
         debugger;
         document.getElementById('imageN').style.display = "block";
@@ -336,7 +342,13 @@ app.controller('myIntroCntrl', function ($scope, myService) {
             $scope.imgN = New.Img;
             $scope.describeN = New.Describe;
             $('#textFroalaN').froalaEditor('html.set', New.Describe);
-=======
+            $scope.Action = "Edit";
+        }, function () {
+            //document.getElementById('imageIntro').src = $scope.Img;
+            //$('#textOfFroala').froalaEditor('html.set', $scope.Describe);
+        });
+        };
+        
     $scope.editPartner = function (partner) {
         debugger;
         document.getElementById('imagePart').style.display = "block";
@@ -352,15 +364,11 @@ app.controller('myIntroCntrl', function ($scope, myService) {
             $('#textFroalaPart').froalaEditor('html.set', partner.Describe);
             document.getElementById('backgroundPart').src = partner.Background;
             $scope.backgroundPart = partner.Background;
->>>>>>> c6e58068ead8e53c99d0e196f811f3b56eccc692
             $scope.Action = "Edit";
         }, function () {
             //document.getElementById('imageIntro').src = $scope.Img;
             //$('#textOfFroala').froalaEditor('html.set', $scope.Describe);
         });
-
-<<<<<<< HEAD
-=======
     }
 
     $scope.AddUpdatePart = function () {
@@ -435,7 +443,6 @@ app.controller('myIntroCntrl', function ($scope, myService) {
     $scope.AddPartnerDiv = function () {
         ClearFields();
         $scope.Action = "Create";
->>>>>>> c6e58068ead8e53c99d0e196f811f3b56eccc692
     }
     
 
