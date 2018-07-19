@@ -63,8 +63,6 @@ namespace Demo.Areas.Admin.Controllers
             return IntroducesDAO.Instance.DeleteIntroduces(id);
         }
 
-
-<<<<<<< HEAD
         public JsonResult GetAllN()
         {
             var listN = NewsDAO.Instance.GetListNews();
@@ -104,7 +102,6 @@ namespace Demo.Areas.Admin.Controllers
         {
             return NewsDAO.Instance.DeleteNews(id);
         }
-=======
         //Partners controller
         public JsonResult GetAllPartners()
         {
@@ -146,7 +143,5 @@ namespace Demo.Areas.Admin.Controllers
             return PartnersDAO.Instance.DeletePartners(id);
         }
 
-
->>>>>>> c6e58068ead8e53c99d0e196f811f3b56eccc692
     }
 }
