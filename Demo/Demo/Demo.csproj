@@ -188,6 +188,7 @@
     <Content Include="Areas\Admin\Assets\dist\js\sb-admin-2.min.js" />
     <Content Include="Areas\Admin\Assets\editor\editor.css" />
     <Content Include="Areas\Admin\Assets\editor\editor.js" />
+    <Content Include="Areas\Admin\Assets\js\sp-form-admin-index.js" />
     <Content Include="Areas\Admin\Assets\js\sp-form-admin.js" />
     <Content Include="Areas\Admin\Assets\_layout\css\bootstrap-table.css" />
     <Content Include="Areas\Admin\Assets\_layout\css\bootstrap-theme.css" />
@@ -930,6 +931,8 @@
     <Content Include="Content\style%284%29.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\styles.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Content\ytprefs.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -1318,6 +1321,8 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Areas\Admin\Assets\_layout\sass\.sass-cache\deff34d1f5b7167181b556002c25068d6adc024d\styles.scssc" />
     <Content Include="Areas\Admin\Assets\_layout\sass\styles.scss" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-1.11.0.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
@@ -2089,6 +2094,8 @@
     <Content Include="Scripts\sitemap.xml" />
     <Content Include="Scripts\sitepress.js" />
     <Content Include="Scripts\tf_numbers.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\waypoints.min.js" />
     <Content Include="Scripts\wp-embed.min.js" />
     <Content Include="Scripts\wp-emoji-release.min.js" />

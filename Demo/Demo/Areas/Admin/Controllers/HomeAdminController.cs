@@ -23,5 +23,44 @@ namespace Demo.Areas.Admin.Controllers
             return View();
             
         }
+        public JsonResult GetAllIntro()
+        {
+            var listintro = IntroducesDAO.Instance.GetListIntroducts();
+            return Json(listintro, JsonRequestBehavior.AllowGet);
+        }
+        public string AddIntroduce(IntroducesModel intro)
+        {
+            if (InsertIntroduces(intro.Name, intro.Img, intro.Data, intro.Describe, intro.Color)) return "Success";
+            else return "Fail";
+        }
+        bool InsertIntroduces(string name, string img, float data, string describe, string color)
+        {
+            return IntroducesDAO.Instance.InsertIntroduces(name, img, data, describe, color);
+        }
+        public JsonResult getIntroduceByNo(string Id)
+        {
+            var introList = IntroducesDAO.Instance.GetIntroducts(int.Parse(Id));
+            return Json(introList, JsonRequestBehavior.AllowGet);
+        }
+        public string UpdateIntroduce(IntroducesModel Intro)
+        {
+            int no = Convert.ToInt32(Intro.Id);
+            if(EditIntroduce(no, Intro.Name, Intro.Img, Intro.Data, Intro.Describe, Intro.Color)) return "Employee Updated";
+            else return "Invalid Employee";
+        }
+        bool EditIntroduce(int id, string name, string img, float data, string describe, string color)
+        {
+            return IntroducesDAO.Instance.EditIntroduces(id, name, img, data, describe, color);
+        }
+        public string DeleteIntroduce(int id)
+        {
+            //int no = Convert.ToInt32(Intro.Id);
+            if(DeleteIntro(id)) return "Introduce Deleted";
+            else return "Invalid Employee";
+        }
+        bool DeleteIntro(int id)
+        {
+            return IntroducesDAO.Instance.DeleteIntroduces(id);
+        }
     }
 }

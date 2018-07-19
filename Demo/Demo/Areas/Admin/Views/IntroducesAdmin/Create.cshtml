@@ -16,15 +16,26 @@
 <link href="~/Scripts/froala-editor/css/froala_style.min.css" rel="stylesheet" type="text/javascript" />
 @section jsFooter{
     <script>
-        $('#btnSelectedImage').on('click', function (e) {
-            e.preventDefault();
+        //$('#btnSelectedImage').on('click', function (e) {
+        //    e.preventDefault();
+        //    var finder = new CKFinder();
+        //    finder.selectActionFunction = function (url) {
+        //        $('#txtImage').val(url);
+        //        document.getElementById("image").src = url;
+        //        document.getElementById("image").style.backgroundColor = 'lightgrey';
+        //        document.getElementById("image").hidden = false;
+        //    }
+        //    finder.popup();
+        //})
+        $('#btnSelectedImage').click(function () {
+            alert("check");
             var finder = new CKFinder();
-            finder.selectActionFunction = function (url) {
-                $('#txtImage').val(url);
+            finder.selectActionFunction = function (fileUrl) {
+                $("#txtImage").val(fileUrl);
                 document.getElementById("image").src = url;
                 document.getElementById("image").style.backgroundColor = 'lightgrey';
                 document.getElementById("image").hidden = false;
-            }
+            };
             finder.popup();
         })
     </script>

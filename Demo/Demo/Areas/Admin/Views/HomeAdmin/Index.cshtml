@@ -7,73 +7,25 @@
 }
 
 <!-- Include external CSS. -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+@*<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">*@
 
 <!-- Include Editor style. -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 <link href="~/Scripts/froala-editor/css/froala_style.min.css" rel="stylesheet" type="text/javascript" />
-
+<link href="~/Content/toastr.css" rel="stylesheet" />
 
 @section jsFooter{
     <script>
-        $('#btnSelectedImage').on('click', function (e) {
-            e.preventDefault();
-            var finder = new CKFinder();
-            finder.selectActionFunction = function (url) {
-                $('#txtImage').val(url);
-                document.getElementById("image").src = url;
-                document.getElementById("image").style.backgroundColor = 'lightgrey';
-                document.getElementById("image").hidden = false;
-            }
-            finder.popup();
-        })
-        function change() {
-            var get = document.getElementById("getColor").value;
-            document.getElementById("txtColor").value = get;
-        }
-        angular.module("myApp", []).controller("control", function ($scope, $interval) {
-            $scope.text = new Date().toLocaleTimeString();
-            $interval(function () { $scope.text = new Date().toLocaleTimeString(); }, 1000);
-        });
-        var q = "_intro";
-        function clickBtn(e, k) {
-            var p = e.id + "_1";
-            document.getElementById(k).style.display = "none";
-            document.getElementById(p).style.display = "block";
-            q = k;
-        }
-        function NoneBtn(e, k) {
-            document.getElementById(e).style.display = "none";
-            document.getElementById(k).style.display = "block";
-        }
-        var s = "_home";
-        function clickItem(e) {
-            var et = "_" + e.id;
-            var m = "create" + q + "_1";
-            var k = "edit" + q + "_1";
-            var n = "details" + q + "_1";
-            var l = "delete" + q + "_1";
-            document.getElementById(s).style.display = "none";
-            document.getElementById(k).style.display = "none";
-            document.getElementById(m).style.display = "none";
-            document.getElementById(n).style.display = "none";
-            document.getElementById(l).style.display = "none";
-            document.getElementById(et).style.display = "block";
-            q = s = et;
-        }
-        $('#btnSelectedBackGround').on('click', function (e) {
-            e.preventDefault();
-            var finder = new CKFinder();
-            finder.selectActionFunction = function (url) {
-                $('#txtBackGround').val(url);
-                document.getElementById("background").src = url;
-                document.getElementById("background").style.backgroundColor = 'lightgrey';
-                document.getElementById("background").hidden = false;
-            }
-            finder.popup();
-        })
+        //$(function () {
+        //    $('#textOfFroala').froalaEditor('html.set', '<p>sc1as56<strong>c14as6c</strong></p><p><strong><em>;alscj;acljac;</em></strong></p>');
+        //});
+        //function getText() {
+        //    var html = $('textarea').froalaEditor('html.get');
+        //    var text = JSON.stringify(html);
+        //    alert(html);
+        //}
     </script>
 }
 
@@ -103,18 +55,13 @@
         <li><div id="news" onclick="clickItem(this)"><em class="fa fa-clone">&nbsp;</em>News</div></li>
         <li><div id="partners" onclick="clickItem(this)"><img src="/Areas/Admin/Assets/_layout/images/partners.png" width="17" height="17" style="margin-right: 5px;" />Partners</div></li>
         <li><a href="/Admin/LoginAdmin"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
-        @*<li>@Html.ActionLink("Log Out", "Logout", "LoginAdmin")</li>*@
     </ul>
 </div><!--/.sidebar-->
 
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" ng-controller="myIntroCntrl">
 
     <div id="_home" style="display:block;">
         <h2>Home Admin</h2>
-
-        <form ng-app="myApp" ng-controller="control">
-            {{text}}
-        </form>
     </div>
 
     <div id="create_home_1" style="display:none;"></div>
@@ -125,7 +72,7 @@
 
     <div id="_intro" style="display:none;">
         <div style="font-size:30px; text-align:center; height: 30px; padding: 5px; margin:20px;"><strong>Introduces List</strong></div>
-        <div class="btn create-btn" id="create_intro" onclick="clickBtn(this,'_intro')" ><span>Create</span></div>
+        <div class="btn create-btn" id="create_intro" onclick="clickBtn(this,'_intro')" ng-click="AddIntroduceDiv()"><span>Create</span></div>
         <table class="table" style="margin-top:10px;">
             <tr>
                 <th>Name</th>
@@ -135,58 +82,57 @@
                 <th>Color</th>
                 <th>#</th>
             </tr>
-            @{List<IntroducesDTO> listintro = IntroducesDAO.Instance.GetListIntroducts();}
-            @foreach (var item in listintro)
-            {
-                <tr>
-                    <td>@Html.Raw(item.Name)</td>
-                    <td><img src=@item.Img height="150" width="150" style="border: 1px solid;background-color:lightgrey;" /></td>
-                    <td>@Html.Raw(item.Data)</td>
-                    <td>@Html.Raw(item.Describe)</td>
-                    <td><input type="color" style="height:34px; float: left;" disabled="disabled" value=@item.Color /></td>
-                    <td>
-                        <div class="btn edit-btn" id="edit_intro" onclick="clickBtn(this,'_intro')"><span>Edit</span></div>
-                        <div class="btn details-btn" id="details_intro" onclick="clickBtn(this,'_intro')"><span>Details</span></div>
-                        <div class="btn delete-btn" id="delete_intro" onclick="clickBtn(this,'_intro')"><span>Delete</span></div>
-                    </td>
-                </tr>
-            }
+            <tr ng-repeat="introduce in introduces">
+                <td style="display:none;">{{introduce.Id}}</td>
+                <td>{{introduce.Name}}</td>
+                <td><img src="{{introduce.Img}}" height="150" width="150" style="border: 1px solid;background-color:lightgrey;" /></td>
+                <td>{{introduce.Data}}</td>
+                <td>{{introduce.Describe}}</td>
+                <td><input type="color" style="height:34px; float: left;" disabled="disabled" value="{{introduce.Color}}" /></td>
+                <td>
+                    <div class="btn edit-btn" id="edit_intro" onclick="NoneBtn('_intro','create_intro_1')" ng-click="editIntroduce(introduce)"><span>Edit</span></div>
+                    <div class="btn details-btn" id="details_intro" onclick="clickBtn(this,'_intro')"><span>Details</span></div>
+                    <div class="btn delete-btn" id="delete_intro" ng-click="deleteIntroduce(introduce)"><span>Delete</span></div>
+                </td>
+            </tr>
         </table>
     </div>
 
     <div id="create_intro_1" style="display:none;">
-        <h3 style="font-weight:bold;margin-top:30px;">Create Introduces</h3>
+        <h3 style="font-weight:bold;margin-top:30px;">{{Action}} Introduces</h3>
         @using (Html.BeginForm())
         {
             <div class="form-horizontal">
                 <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div style="display:none;"><input type="text" ng-model="idIntro" /></div>
                 <div class="form-group">
                     <p class="control-label col-md-2">Name</p>
-                    <input type="text" class="col-md-10 form-control" required />
+                    <input type="text" class="col-md-10 form-control" ng-model="nameIntro" required />
                 </div>
                 <div class="form-group">
-                    <p class="control-label col-md-2">Img</p>
-                    <input type="text" class="col-md-10" style="width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;display:none;" readonly="readonly" id="txtImage" required />
-                    <a id="btnSelectedImage" href="#" class="btn" style="margin-left:-13px;"><div style="border:1px black solid;height:150px;width:150px;"><img src="" height="150" width="150" id="image" hidden="hidden" /></div></a>
+                    <p class="control-label col-md-2">Image</p>
+                    <div class="col-md-6" style="border:1px black solid;height:150px;width:150px;"><img src="" height="148" width="148" style="margin-left:-15px;background-color:lightgrey; " id="imageIntro" ng-model="imgIntro" /></div>
+                    <input type="button" value="..." id="btnSelectedImageIntro" class="btn col-md-4" style="width:50px; margin-left: 5px;" ng-click="TextUrlImage()" />
                 </div>
                 <div class="form-group">
                     <p class="control-label col-md-2">Data</p>
-                    <input type="text" class="col-md-10 form-control" required />
+                    <input type="text" class="col-md-10 form-control" ng-model="dataIntro" required />
                 </div>
                 <div class="form-group">
                     <p class="control-label col-md-2">Describe</p>
-                    <div style="width:1000px; float:left;"><textarea style="height:400px;"></textarea></div>
+                    <div style="width:1000px; float:left;"><textarea id="textFroalaIntro" style="height:400px;" ng-model="describeIntro"></textarea></div>
                 </div>
                 <div class="form-group">
                     <p class="control-label col-md-2">Color</p>
-                    <input type="text" style="float:left; width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;padding: 6px 12px;display:none;" class="col-md-10 form-control" readonly="readonly" id="txtColor" required />
-                    <input type="color" id="getColor" style="height:34px; float: left; width:68px;" onchange="change()" />
+                    <div class="col-md-10">
+                    <input type="color" id="getColor" style="height:34px; float: left; width:68px;" ng-model="colorIntro" />
+                    </div>
+                    
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="button" value="Create" class="btn btn-default" style="margin-left:-15px;border-color:black" />
-                        <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('create_intro_1','_intro')" />
+                        <input type="button" value="{{Action}}" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('create_intro_1','_intro')" ng-click="AddUpdateIntro()" />
+                        <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('create_intro_1','_intro')" />
                     </div>
                 </div>
             </div>
@@ -200,7 +146,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" value="Edit" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('details_intro_1','edit_intro_1')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('details_intro_1','_intro')" />
+                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('details_intro_1','_intro')" />
             </div>
         </div>
     </div>
@@ -211,7 +157,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" value="Save" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('edit_intro_1','_intro')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('edit_intro_1','_intro')" />
+                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('edit_intro_1','_intro')" />
             </div>
         </div>
     </div>
@@ -222,7 +168,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" value="Delete" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('delete_intro_1','_intro')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('delete_intro_1','_intro')" />
+                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('delete_intro_1','_intro')" />
             </div>
         </div>
     </div>
@@ -257,32 +203,33 @@
 
     <div id="create_news_1" style="display:none;">
         <h3 style="font-weight:bold;margin-top:30px;">Create Introduces</h3>
-        @using (Html.BeginForm())
-        {
-            <div class="form-horizontal">
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    <p class="control-label col-md-2">Name</p>
-                    <input type="text" class="col-md-10 form-control" required />
-                </div>
-                <div class="form-group">
-                    <p class="control-label col-md-2">Img</p>
-                    <input type="text" class="col-md-10" style="width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;display:none;" readonly="readonly" id="txtImage" required />
-                    <a id="btnSelectedImage" href="#" class="btn" style="margin-left:-13px;"><div style="border:1px black solid;height:150px;width:150px;"><img src="" height="150" width="150" id="image" hidden="hidden" /></div></a>
-                </div>
-                <div class="form-group">
-                    <p class="control-label col-md-2">Describe</p>
-                    <div style="width:1000px; float:left;"><textarea style="height:400px;"></textarea></div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="button" value="Create" class="btn btn-default" style="margin-left:-15px;border-color:black" />
-                        <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('create_news_1','_news')" />
+        @*@using (Html.BeginForm())
+            {
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <p class="control-label col-md-2">Name</p>
+                        <input type="text" class="col-md-10 form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <p class="control-label col-md-2">Img</p>
+                        <input type="text" class="col-md-10" style="width: 500px; border: 1px solid #ccc; border-radius: 4px; height: 34px;display:none;" readonly="readonly" id="txtImage" required />
+                        <a id="btnSelectedImage" href="#" class="btn" style="margin-left:-13px;"><div style="border:1px black solid;height:150px;width:150px;"><img src="" height="150" width="150" id="image" hidden="hidden" /></div></a>
+                    </div>
+                    <div class="form-group">
+                        <p class="control-label col-md-2">Describe</p>
+                        <div style="width:1000px; float:left;"><textarea style="height:400px;"></textarea></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="Create" class="btn btn-default" style="margin-left:-15px;border-color:black" />
+                            <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('create_news_1','_news')" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }*@
+        <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('create_news_1','_news')" />
     </div>
 
     <div id="details_news_1" style="display:none;">
@@ -291,7 +238,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" value="Edit" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('details_news_1','edit_news_1')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('details_news_1','_news')" />
+                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('details_news_1','_news')" />
             </div>
         </div>
     </div>
@@ -302,7 +249,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" value="Save" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('edit_news_1','_news')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('edit_news_1','_news')" />
+                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('edit_news_1','_news')" />
             </div>
         </div>
     </div>
@@ -313,7 +260,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" value="Delete" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('delete_news_1','_news')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('delete_news_1','_news')" />
+                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('delete_news_1','_news')" />
             </div>
         </div>
     </div>
@@ -350,8 +297,8 @@
 
     <div id="create_partners_1" style="display:none;">
         <h3 style="font-weight:bold;margin-top:30px;">Create Partners</h3>
-        @using (Html.BeginForm())
-        {
+        @*@using (Html.BeginForm())
+            {
             <div class="form-horizontal">
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -380,7 +327,8 @@
                     </div>
                 </div>
             </div>
-        }
+            }*@
+        <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('create_partners_1','_partners')" />
     </div>
 
     <div id="details_partners_1" style="display:none;">
@@ -389,7 +337,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" value="Edit" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('details_partners_1','edit_partners_1')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('details_partners_1','_partners')" />
+                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('details_partners_1','_partners')" />
             </div>
         </div>
     </div>
@@ -400,7 +348,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" value="Save" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('edit_partners_1','_partners')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('edit_partners_1','_partners')" />
+                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('edit_partners_1','_partners')" />
             </div>
         </div>
     </div>
@@ -411,7 +359,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="button" value="Delete" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('delete_partners_1','_partners')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" id="cancel" onclick="NoneBtn('delete_partners_1','_partners')" />
+                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('delete_partners_1','_partners')" />
             </div>
         </div>
     </div>
@@ -421,13 +369,13 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
-    <script src="~/Scripts/froala-editor/js/froala_editor.pkgd.min.js"></script>
-    <script>$(function () { $('textarea').froalaEditor() });</script>
-    <script>$(function () { document.getElementById("txtColor").value = document.getElementById("getColor").value; });</script>
-    <script src="~/Assets/plugins/ckfinder.js"></script>
-    <script src="~/Scripts/angular.min.js"></script>
-    @*<script src="~/Scripts/main.js"></script>*@
+    <script src="/Scripts/jquery-1.11.0.min.js"></script>
+    <script src="/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="/Scripts/froala-editor/js/froala_editor.pkgd.min.js"></script>
+    <script>$(function () { $('textarea').froalaEditor(); });</script>
+    <script src="/Assets/plugins/ckfinder.js"></script>
+    <script src="/Scripts/angular.min.js"></script>
+    <script src="/Areas/Admin/Assets/js/sp-form-admin.js"></script>
+    <script src="/Areas/Admin/Assets/js/sp-form-admin-index.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
 }

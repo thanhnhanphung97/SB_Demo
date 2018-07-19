@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,63 +10,23 @@
     <link href="/Areas/Admin/Assets/_layout/css/font-awesome.min.css" rel="stylesheet" />
     <link href="/Areas/Admin/Assets/_layout/css/datepicker3.css" rel="stylesheet" />
     <link href="/Areas/Admin/Assets/_layout/css/styles.css" rel="stylesheet" />
-
+    <script src="/Areas/Admin/Assets/js/sp-form-admin-index.js"></script>
     <!--Custom Font-->
     <!--[if lt IE 9]>
-            <script src="/Areas/Admin/Assets/_layout/js/html5shiv.min.js"></script>
-            <script src="/Areas/Admin/Assets/_layout/js/respond.min.js"></script>
-   <![endif]-->
-    @*<script>
-        var s = "_home";
-
-        function clickItem(e) {
-            var et = "_" + e.id;
-            document.getElementById(s).style.display = "none";
-            document.getElementById(et).style.display = "block";
-            s = et;
-        }
-    </script>*@
+             <script src="/Areas/Admin/Assets/_layout/js/html5shiv.min.js"></script>
+             <script src="/Areas/Admin/Assets/_layout/js/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
-    @*<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/Admin" style="color:#999999;"><span style="color:chartreuse">Smart</span>Billing</a>
-            </div>
-        </div><!-- /.container-fluid -->
-    </nav>
-    <div id="sidebar-collapse menu" class="col-sm-3 col-lg-2 sidebar" style="display:block;">
-        <div class="profile-sidebar">
-            <div class="profile-userpic">
-                <img src="~/Areas/Admin/Assets/_layout/images/ffff.png" class="img-responsive" alt="">
-            </div>
-            <div class="profile-usertitle">
-                <div class="profile-usertitle-name">@ViewBag.UserName</div>
-                <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="divider"></div>
-        <ul class="nav menu">
-            <li><div id="home" onclick="clickItem(this)"><img src="/Areas/Admin/Assets/_layout/images/home.png" width="17" height="17" style="margin-right: 5px;" />Home</div></li>
-            <li><div id="intro" onclick="clickItem(this)"><img src="/Areas/Admin/Assets/_layout/images/introduce.png" width="17" height="17" style="margin-right: 5px;" />Introduces</div></li>
-            <li><div id="news" onclick="clickItem(this)"><em class="fa fa-clone">&nbsp;</em>News</div></li>
-            <li><div id="partners" onclick="clickItem(this)"><img src="/Areas/Admin/Assets/_layout/images/partners.png" width="17" height="17" style="margin-right: 5px;" />Partners</div></li>
-            <li><a href="/Admin/LoginAdmin"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
-        </ul>
-    </div><!--/.sidebar-->
-
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-
-    </div>	<!--/.main-->*@
 
     @RenderBody()
-    @*<script src="/Areas/Admin/Assets/_layout/js/jquery-1.11.1.min.js"></script>*@
-    <script src="/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="/Areas/Admin/Assets/_layout/js/jquery-1.11.1.min.js"></script>
+    @*<script src="/Scripts/jquery-3.3.1.min.js"></script>*@
     <script src="/Areas/Admin/Assets/_layout/js/bootstrap.min.js"></script>
     <script src="/Areas/Admin/Assets/_layout/js/bootstrap-datepicker.js"></script>
     <script src="/Areas/Admin/Assets/_layout/js/custom.js"></script>
+    <script src="/Scripts/angular.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="/Assets/plugins/ckfinder.js"></script>
