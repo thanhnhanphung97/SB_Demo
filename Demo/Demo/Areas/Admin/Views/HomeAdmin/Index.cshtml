@@ -28,7 +28,15 @@
         //}
     </script>
 }
-
+@*<style>
+        a.classname {
+            display: block;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>*@
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -56,6 +64,7 @@
         <li><div id="partners" onclick="clickItem(this)"><img src="/Areas/Admin/Assets/_layout/images/partners.png" width="17" height="17" style="margin-right: 5px;" />Partners</div></li>
         <li><a href="/Admin/LoginAdmin"><em class="fa fa-power-off">&nbsp;</em>Log Out</a></li>
     </ul>
+    @*<div style="margin-left:35%;margin-top:50%;" class="btn btn-danger">@Html.ActionLink("Log Out", "Logout", "LoginAdmin", null, new { @class = "classname" })</div>*@
 </div><!--/.sidebar-->
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" ng-controller="myIntroCntrl">
@@ -81,11 +90,11 @@
                 <td>{{introduce.Name}}</td>
                 <td><img src="{{introduce.Img}}" height="100" width="100" style="border: 1px solid;background-color:lightgrey;" /></td>
                 <td>{{introduce.Data}}</td>
-                <td>{{introduce.Describe|HtmlToPlainText}}</td>
+                <td><div ng-bind-html-unsafe="introduce.Describe"></div></td>
                 <td><input type="color" style="height:34px; float: left;" disabled="disabled" value="{{introduce.Color}}" /></td>
                 <td>
                     <div class="btn btn btn-md btn-info" id="edit_intro" onclick="NoneBtn('_intro','create_intro_1')" ng-click="editIntroduce(introduce)"><span>Edit</span></div>
-                    <div class="btn btn btn-md btn-info" id="details_intro" onclick="clickBtn(this,'_intro')"><span>Details</span></div>
+                    <div class="btn btn btn-md btn-info" id="details_intro" onclick="clickBtn(this,'_intro')" ng-click="editIntroduce(introduce)"><span>Details</span></div>
                     <div class="btn btn btn-md btn-info" id="delete_intro" ng-click="deleteIntroduce(introduce)"><span>Delete</span></div>
                 </td>
             </tr>
@@ -120,14 +129,14 @@
                 <div class="form-group">
                     <p class="control-label col-md-2">Color</p>
                     <div class="col-md-10">
-                    <input type="color" id="getColor" style="height:34px;float:left;width:50px;margin-left:-15px;" ng-model="colorIntro" />
+                        <input type="color" id="getColor" style="height:34px;float:left;width:50px;margin-left:-15px;" ng-model="colorIntro" />
                     </div>
-                    
+
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="button" value="{{Action}}" class="btn btn-success btn-md" style="margin-left:-15px;" onclick="NoneBtn('create_intro_1','_intro')" ng-click="AddUpdateIntro()" />
-                        <input type="button" value="Cancel" class="btn btn-default btn-md" style="margin-left:10px;" onclick="NoneBtn('create_intro_1','_intro')" />
+                        <input type="button" value="Cancel" class="btn btn-danger btn-md" style="margin-left:10px;" onclick="NoneBtn('create_intro_1','_intro')" />
                     </div>
                 </div>
             </div>
@@ -138,10 +147,28 @@
         <h3>Details Introduces</h3>
 
 
+        <div style="margin-left:33%;">
+            <div style="text-align:center;background-color:{{colorIntro}};height:300px;width:400px;">
+                <div style="margin-top:30px;">
+                    <img src="{{imgIntro}}" alt="" height="140" width="140" style="margin-top:30px;" />
+                </div>
+                <div style="color:white;">
+                    <div style="font-size:60px;font-weight:bold;">
+                        {{dataIntro}}
+                        <br />
+                    </div>
+                    <div style="font-size:20px;">
+                        <div ng-bind-html-unsafe="describeIntro"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Edit" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('details_intro_1','edit_intro_1')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('details_intro_1','_intro')" />
+            <div class="col-md-offset-2 col-md-10" style="margin-left:40%;">
+                <input type="button" value="Edit" class="btn btn-success btn-md" onclick="NoneBtn('details_intro_1','create_intro_1')" />
+                <input type="button" value="Cancel" class="btn btn-danger btn-md" onclick="NoneBtn('details_intro_1','_intro')" />
             </div>
         </div>
     </div>
@@ -159,10 +186,10 @@
             <tr ng-repeat="New in News">
                 <td>{{New.Name}}</td>
                 <td><img src="{{New.Img}}" height="125" width="175" style="border: 1px solid;background-color:lightgrey;" /></td>
-                <td>{{New.Describe|HtmlToPlainText}}</td>
+                <td><div ng-bind-html-unsafe="New.Describe"></div></td>
                 <td>
                     <div class="btn btn btn-md btn-info" id="edit_news" onclick="NoneBtn('_news','create_news_1')" ng-click="editNew(New)"><span>Edit</span></div>
-                    <div class="btn btn btn-md btn-info" id="details_news" onclick="clickBtn(this,'_news')"><span>Details</span></div>
+                    <div class="btn btn btn-md btn-info" id="details_news" onclick="clickBtn(this,'_news')" ng-click="editNew(New)"><span>Details</span></div>
                     <div class="btn btn btn-md btn-info" id="delete_news" ng-click="deleteNew(New)"><span>Delete</span></div>
                 </td>
             </tr>
@@ -183,7 +210,7 @@
                 </div>
                 <div class="form-group">
                     <p class="control-label col-md-2">Image</p>
-                    <div class="col-md-6" style="border:1px black solid;height:125px;width:175px;"><img src="" height="125" width="175" style="margin-left:-15px;background-color:lightgrey;" hidden="hidden" id="imageN" ng-model="imgN" /></div>
+                    <div class="col-md-6" style="border:1px black solid;height:125px;width:175px;"><img src="" height="123" width="172" style="margin-left:-15px;background-color:lightgrey;" hidden="hidden" id="imageN" ng-model="imgN" /></div>
                     <input type="button" value="..." id="btnSelectedImageN" class="btn col-md-4" style="width:50px; margin-left: 5px;" ng-click="TextUrlImageN()" />
                 </div>
                 <div class="form-group">
@@ -193,7 +220,7 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="button" value="{{Action}}" class="btn btn-success btn-md" style="margin-left:-15px;" onclick="NoneBtn('create_news_1','_news')" ng-click="AddUpdateN()" />
-                        <input type="button" value="Cancel" class="btn btn-default btn-md" style="margin-left:10px;" onclick="NoneBtn('create_news_1','_news')" />
+                        <input type="button" value="Cancel" class="btn btn-danger btn-md" style="margin-left:10px;" onclick="NoneBtn('create_news_1','_news')" />
                     </div>
                 </div>
             </div>
@@ -203,10 +230,21 @@
     <div id="details_news_1" style="display:none;">
         <h3>Details News</h3>
 
+        <div style="margin-top:100px;margin-bottom:100px;">
+            <h2 style="text-align:center;">{{nameN}}</h2>
+            <div style="text-align:center;margin-bottom:25px;margin-top:25px;">
+
+                <img src={{imgN}} alt="" height="650" width="1000" />
+            </div>
+            <div style="color:dimgray;text-align:left;">
+                <div ng-bind-html-unsafe="describeN"></div>
+            </div>
+        </div>
+
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Edit" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('details_news_1','edit_news_1')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('details_news_1','_news')" />
+            <div class="col-md-offset-2 col-md-10" style="margin-left:40%;">
+                <input type="button" value="Edit" class="btn btn-success btn-md" onclick="NoneBtn('details_news_1','create_news_1')" />
+                <input type="button" value="Cancel" class="btn btn-danger btn-md" onclick="NoneBtn('details_news_1','_news')" />
             </div>
         </div>
     </div>
@@ -226,60 +264,80 @@
                 <td style="display:none;">{{partner.Id}}</td>
                 <td>{{partner.Name}}</td>
                 <td><img src="{{partner.Img}}" height="100" width="100" style="border: 1px solid;background-color:lightgrey;" /></td>
-                <td>{{partner.Describe}}</td>
+                <td><div ng-bind-html-unsafe="partner.Describe"></div></td>
                 <td><img src="{{partner.Background}}" height="100" width="125" style="border: 1px solid;background-color:lightgrey;" /></td>
                 <td>
                     <div class="btn btn btn-md btn-info" id="edit_intro" onclick="NoneBtn('_partners','create_partners_1')" ng-click="editPartner(partner)"><span>Edit</span></div>
-                    <div class="btn btn btn-md btn-info" id="details_intro" onclick="clickBtn(this,'_partners')"><span>Details</span></div>
+                    <div class="btn btn btn-md btn-info" id="details_partners" onclick="clickBtn(this,'_partners')" ng-click="editPartner(partner)"><span>Details</span></div>
                     <div class="btn btn btn-md btn-info" id="delete_intro" ng-click="deletePartner(partner)"><span>Delete</span></div>
                 </td>
             </tr>
-         </table>
+        </table>
     </div>
 
     <div id="create_partners_1" style="display:none;">
         <h2 style="font-weight:bold;margin-top:30px;margin-bottom:30px;">Partners</h2>
         @using (Html.BeginForm())
         {
-        <div class="form-horizontal">
-            <hr />
-            <h3 style="margin-left:50px;"><span>{{Action}}</span></h3>
-            <div style="display:none;"><input type="text" ng-model="idPart" /></div>
-            <div class="form-group">
-                <p class="control-label col-md-2">Name</p>
-                <input type="text" class="col-md-10 form-control" ng-model="namePart" required />
-            </div>
-            <div class="form-group">
-                <p class="control-label col-md-2">Image</p>
-                <div class="col-md-6" style="border:1px black solid;height:100px;width:100px;"><img src="" height="98" width="98" style="margin-left:-15px;background-color:lightgrey;" hidden="hidden" id="imagePart" ng-model="imgPart" /></div>
-                <input type="button" value="..." id="btnSelectedImagePart" class="btn col-md-4" style="width:50px; margin-left: 5px;" ng-click="TextUrlImagePart()" />
-            </div>
-            <div class="form-group">
-                <p class="control-label col-md-2">Describe</p>
-                <div style="width:1000px; float:left;"><textarea id="textFroalaPart" style="height:400px;" ng-model="describePart"></textarea></div>
-            </div>
-            <div class="form-group">
-                <p class="control-label col-md-2">Background</p>
-                <div class="col-md-6" style="border:1px black solid;height:100px;width:100px;"><img src="" height="98" width="98" style="margin-left:-15px;background-color:lightgrey;" hidden="hidden" id="backgroundPart" ng-model="backgroundPart" /></div>
-                <input type="button" value="..." id="btnSelectedBackgroundPart" class="btn col-md-4" style="width:50px; margin-left: 5px;" ng-click="TextUrlBackgroundPart()" />
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="button" value="{{Action}}" class="btn btn-success btn-md" style="margin-left:-15px;" onclick="NoneBtn('create_partners_1','_partners')" ng-click="AddUpdatePart()" />
-                    <input type="button" value="Cancel" class="btn btn-default btn-md" style="margin-left:10px;" onclick="NoneBtn('create_partners_1','_partners')" />
+            <div class="form-horizontal">
+                <hr />
+                <h3 style="margin-left:50px;"><span>{{Action}}</span></h3>
+                <div style="display:none;"><input type="text" ng-model="idPart" /></div>
+                <div class="form-group">
+                    <p class="control-label col-md-2">Name</p>
+                    <input type="text" class="col-md-10 form-control" ng-model="namePart" required />
+                </div>
+                <div class="form-group">
+                    <p class="control-label col-md-2">Image</p>
+                    <div class="col-md-6" style="border:1px black solid;height:100px;width:100px;"><img src="" height="98" width="98" style="margin-left:-15px;background-color:lightgrey;" hidden="hidden" id="imagePart" ng-model="imgPart" /></div>
+                    <input type="button" value="..." id="btnSelectedImagePart" class="btn col-md-4" style="width:50px; margin-left: 5px;" ng-click="TextUrlImagePart()" />
+                </div>
+                <div class="form-group">
+                    <p class="control-label col-md-2">Describe</p>
+                    <div style="width:1000px; float:left;"><textarea id="textFroalaPart" style="height:400px;" ng-model="describePart"></textarea></div>
+                </div>
+                <div class="form-group">
+                    <p class="control-label col-md-2">Background</p>
+                    <div class="col-md-6" style="border:1px black solid;height:100px;width:125px;"><img src="" height="98" width="123" style="margin-left:-15px;background-color:lightgrey;" hidden="hidden" id="backgroundPart" ng-model="backgroundPart" /></div>
+                    <input type="button" value="..." id="btnSelectedBackgroundPart" class="btn col-md-4" style="width:50px; margin-left: 5px;" ng-click="TextUrlBackgroundPart()" />
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="{{Action}}" class="btn btn-success btn-md" style="margin-left:-15px;" onclick="NoneBtn('create_partners_1','_partners')" ng-click="AddUpdatePart()" />
+                        <input type="button" value="Cancel" class="btn btn-danger btn-md" style="margin-left:10px;" onclick="NoneBtn('create_partners_1','_partners')" />
+                    </div>
                 </div>
             </div>
-        </div>
         }
     </div>
 
     <div id="details_partners_1" style="display:none;">
         <h3>Details News</h3>
+        <br />
+        <div style="width:1400px; margin-left:20px;">
+            <div style="text-align:center;height:600px;width:100%;background-image:url({{backgroundPart}});">
+                <div>
+                    <img src="{{imgPart}}" alt="" height="160" width="160" />
+                </div>
+                <div style="margin-bottom:15px;font-size:50px;font-weight:bold;">
+                    {{namePart}}
+                    <br />
+                </div>
+                <div style="font-size:16px;width:40%;margin-left:30%;">
+                    <div ng-bind-html-unsafe="describePart"></div>
+                </div>
+                <div style="margin-left:43%;margin-top:75px;">
+                    <a href="" style="color:none;text-decoration:none;font-size:20px;font-weight:bold;"><div style="text-align:center;background-color:white;width:21%;padding-top:06px;padding-bottom:6px;border-radius:6px;">QUESTIONS?</div></a>
+                </div>
+            </div>
+        </div>
 
+
+        <br />
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Edit" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('details_partners_1','edit_partners_1')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('details_partners_1','_partners')" />
+            <div class="col-md-offset-2 col-md-10" style="margin-left:40%;">
+                <input type="button" value="Edit" class="btn btn-success btn-md" onclick="NoneBtn('details_partners_1','create_partners_1')" />
+                <input type="button" value="Cancel" class="btn btn-danger btn-md" onclick="NoneBtn('details_partners_1','_partners')" />
             </div>
         </div>
     </div>
@@ -299,4 +357,5 @@
     <script src="/Areas/Admin/Assets/js/sp-form-admin.js"></script>
     <script src="/Areas/Admin/Assets/js/sp-form-admin-index.js"></script>
     <script src="~/Scripts/toastr.js"></script>
+    <script src="http://code.angularjs.org/1.0.0/angular-1.0.0.js"></script>
 }

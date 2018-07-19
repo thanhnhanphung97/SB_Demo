@@ -237,7 +237,7 @@ app.controller('myIntroCntrl', function ($scope, myService) {
             var getData = myService.DeleteIntro(introduce.Id);
             getData.then(function (msg) {
                 GetAllIntroduce();
-                toastr.warning("Success!", "Notification");
+                toastr.success("Success!", "Notification");
             }, function () {
                 toastr.error("Error!", "Notification");
             });
@@ -409,7 +409,7 @@ app.controller('myIntroCntrl', function ($scope, myService) {
             var getData = myService.DeletePart(Partner.Id);
             getData.then(function (msg) {
                 GetAllPartners();
-                toastr.warning("Success!", "Notification");
+                toastr.success("Success!", "Notification");
             }, function () {
                 toastr.error("Error!", "Notification");
             });
@@ -482,7 +482,7 @@ app.controller('myIntroCntrl', function ($scope, myService) {
             var getData = myService.DeleteN(New.Id);
             getData.then(function (msg) {
                 GetAllNew();
-                toastr.warning("Success!", "Notification");
+                toastr.success("Success!", "Notification");
             }, function () {
                 toastr.error("Error!", "Notification");
             });
