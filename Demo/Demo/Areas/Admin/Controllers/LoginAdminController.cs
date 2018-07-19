@@ -49,7 +49,7 @@ namespace Demo.Areas.Admin.Controllers
         public ActionResult Logout()
         {
             Session["loginSession"] = null;
-            return RedirectToAction("Index", "LoginAdmin");
+            return RedirectToAction("Index", "HomeAdmin");
         }
         bool LoginAccount(string userName, string password)
         {

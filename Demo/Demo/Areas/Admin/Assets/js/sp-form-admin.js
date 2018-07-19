@@ -142,6 +142,7 @@ app.controller('myIntroCntrl', function ($scope, myService) {
             $("#txtImageIntro").val(url);
             document.getElementById("imageIntro").src = url;
             document.getElementById("imageIntro").style.backgroundColor = 'lightgrey';
+            document.getElementById("imageIntro").style.display = "block";
             document.getElementById("imageIntro").hidden = false;
             };
         finder.popup();

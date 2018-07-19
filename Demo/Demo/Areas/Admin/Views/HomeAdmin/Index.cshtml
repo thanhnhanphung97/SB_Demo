@@ -54,29 +54,23 @@
         <li><div id="intro" onclick="clickItem(this)"><img src="/Areas/Admin/Assets/_layout/images/introduce.png" width="17" height="17" style="margin-right: 5px;" />Introduces</div></li>
         <li><div id="news" onclick="clickItem(this)"><em class="fa fa-clone">&nbsp;</em>News</div></li>
         <li><div id="partners" onclick="clickItem(this)"><img src="/Areas/Admin/Assets/_layout/images/partners.png" width="17" height="17" style="margin-right: 5px;" />Partners</div></li>
-        <li><a href="/Admin/LoginAdmin"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+        <li><a href="/Admin/LoginAdmin"><em class="fa fa-power-off">&nbsp;</em>Log Out</a></li>
     </ul>
 </div><!--/.sidebar-->
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" ng-controller="myIntroCntrl">
 
-    <div id="_home" style="display:block;">
-        <h2>Home Admin</h2>
-    </div>
-
+    <div id="_home" style="display:block;font-size:30px;text-align:center;height:30px;padding:5px;margin:20px;"><strong>Home Admin</strong></div>
     <div id="create_home_1" style="display:none;"></div>
     <div id="details_home_1" style="display:none;"></div>
-    <div id="edit_home_1" style="display:none;"></div>
-    <div id="delete_home_1" style="display:none;"></div>
 
-
-    <div id="_intro" style="display:none;">
+    <div id="_intro" style="display:none;margin-top:40px;">
         <div style="font-size:30px; text-align:center; height: 30px; padding: 5px; margin:20px;"><strong>Introduces List</strong></div>
-        <div class="btn create-btn" id="create_intro" onclick="clickBtn(this,'_intro')" ng-click="AddIntroduceDiv()"><span>Create</span></div>
+        <div class="btn btn-md btn-info" id="create_intro" onclick="clickBtn(this,'_intro')" ng-click="AddIntroduceDiv()"><span>Create</span></div>
         <table class="table" style="margin-top:10px;">
             <tr>
                 <th>Name</th>
-                <th>Img</th>
+                <th>Image</th>
                 <th>Data</th>
                 <th>Describe</th>
                 <th>Color</th>
@@ -85,25 +79,26 @@
             <tr ng-repeat="introduce in introduces">
                 <td style="display:none;">{{introduce.Id}}</td>
                 <td>{{introduce.Name}}</td>
-                <td><img src="{{introduce.Img}}" height="150" width="150" style="border: 1px solid;background-color:lightgrey;" /></td>
+                <td><img src="{{introduce.Img}}" height="100" width="100" style="border: 1px solid;background-color:lightgrey;" /></td>
                 <td>{{introduce.Data}}</td>
                 <td>{{introduce.Describe}}</td>
                 <td><input type="color" style="height:34px; float: left;" disabled="disabled" value="{{introduce.Color}}" /></td>
                 <td>
-                    <div class="btn edit-btn" id="edit_intro" onclick="NoneBtn('_intro','create_intro_1')" ng-click="editIntroduce(introduce)"><span>Edit</span></div>
-                    <div class="btn details-btn" id="details_intro" onclick="clickBtn(this,'_intro')"><span>Details</span></div>
-                    <div class="btn delete-btn" id="delete_intro" ng-click="deleteIntroduce(introduce)"><span>Delete</span></div>
+                    <div class="btn btn btn-md btn-info" id="edit_intro" onclick="NoneBtn('_intro','create_intro_1')" ng-click="editIntroduce(introduce)"><span>Edit</span></div>
+                    <div class="btn btn btn-md btn-info" id="details_intro" onclick="clickBtn(this,'_intro')"><span>Details</span></div>
+                    <div class="btn btn btn-md btn-info" id="delete_intro" ng-click="deleteIntroduce(introduce)"><span>Delete</span></div>
                 </td>
             </tr>
         </table>
     </div>
 
     <div id="create_intro_1" style="display:none;">
-        <h3 style="font-weight:bold;margin-top:30px;">{{Action}} Introduces</h3>
+        <h2 style="font-weight:bold;margin-top:30px;margin-bottom:30px;">Introduces</h2>
         @using (Html.BeginForm())
         {
             <div class="form-horizontal">
                 <hr />
+                <h3 style="margin-left:50px;"><span>{{Action}}</span></h3>
                 <div style="display:none;"><input type="text" ng-model="idIntro" /></div>
                 <div class="form-group">
                     <p class="control-label col-md-2">Name</p>
@@ -111,7 +106,7 @@
                 </div>
                 <div class="form-group">
                     <p class="control-label col-md-2">Image</p>
-                    <div class="col-md-6" style="border:1px black solid;height:150px;width:150px;"><img src="" height="148" width="148" style="margin-left:-15px;background-color:lightgrey; " id="imageIntro" ng-model="imgIntro" /></div>
+                    <div class="col-md-6" style="border:1px black solid;height:100px;width:100px;"><img src="" height="98" width="98" style="margin-left:-15px;background-color:lightgrey;" hidden="hidden" id="imageIntro" ng-model="imgIntro" /></div>
                     <input type="button" value="..." id="btnSelectedImageIntro" class="btn col-md-4" style="width:50px; margin-left: 5px;" ng-click="TextUrlImage()" />
                 </div>
                 <div class="form-group">
@@ -125,14 +120,14 @@
                 <div class="form-group">
                     <p class="control-label col-md-2">Color</p>
                     <div class="col-md-10">
-                    <input type="color" id="getColor" style="height:34px; float: left; width:68px;" ng-model="colorIntro" />
+                    <input type="color" id="getColor" style="height:34px;float:left;width:50px;margin-left:-15px;" ng-model="colorIntro" />
                     </div>
                     
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="button" value="{{Action}}" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('create_intro_1','_intro')" ng-click="AddUpdateIntro()" />
-                        <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('create_intro_1','_intro')" />
+                        <input type="button" value="{{Action}}" class="btn btn-success btn-md" style="margin-left:-15px;" onclick="NoneBtn('create_intro_1','_intro')" ng-click="AddUpdateIntro()" />
+                        <input type="button" value="Cancel" class="btn btn-default btn-md" style="margin-left:10px;" onclick="NoneBtn('create_intro_1','_intro')" />
                     </div>
                 </div>
             </div>
@@ -150,29 +145,6 @@
             </div>
         </div>
     </div>
-
-    <div id="edit_intro_1" style="display:none;">
-        <h3>Edit introduces</h3>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Save" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('edit_intro_1','_intro')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('edit_intro_1','_intro')" />
-            </div>
-        </div>
-    </div>
-
-    <div id="delete_intro_1" style="display:none;">
-        <h3>Delete introduces</h3>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Delete" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('delete_intro_1','_intro')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('delete_intro_1','_intro')" />
-            </div>
-        </div>
-    </div>
-
 
     <div id="_news" style="display:none;">
         <div style="font-size:30px; text-align:center; height: 30px; padding: 5px; margin: 20px;"><strong>News List</strong></div>
@@ -242,29 +214,6 @@
             </div>
         </div>
     </div>
-
-    <div id="edit_news_1" style="display:none;">
-        <h3>Edit News</h3>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Save" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('edit_news_1','_news')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('edit_news_1','_news')" />
-            </div>
-        </div>
-    </div>
-
-    <div id="delete_news_1" style="display:none;">
-        <h3>Delete News</h3>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Delete" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('delete_news_1','_news')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('delete_news_1','_news')" />
-            </div>
-        </div>
-    </div>
-
 
     <div id="_partners" style="display:none;">
         <div style="font-size:30px; text-align:center; height: 30px; padding: 5px; margin: 20px;"><strong>Partners List</strong></div>
@@ -342,27 +291,6 @@
         </div>
     </div>
 
-    <div id="edit_partners_1" style="display:none;">
-        <h3>Edit News</h3>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Save" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('edit_partners_1','_partners')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('edit_partners_1','_partners')" />
-            </div>
-        </div>
-    </div>
-
-    <div id="delete_partners_1" style="display:none;">
-        <h3>Delete News</h3>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Delete" class="btn btn-default" style="margin-left:-15px;border-color:black" onclick="NoneBtn('delete_partners_1','_partners')" />
-                <input type="button" value="Cancel" class="btn btn-default" style="margin-left:15px;border-color:black" onclick="NoneBtn('delete_partners_1','_partners')" />
-            </div>
-        </div>
-    </div>
 </div>
 
 

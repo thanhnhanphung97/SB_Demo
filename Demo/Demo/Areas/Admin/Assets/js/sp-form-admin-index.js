@@ -28,14 +28,10 @@ var s = "_home";
 function clickItem(e) {
     var et = "_" + e.id;
     var m = "create" + q + "_1";
-    var k = "edit" + q + "_1";
     var n = "details" + q + "_1";
-    var l = "delete" + q + "_1";
     document.getElementById(s).style.display = "none";
-    document.getElementById(k).style.display = "none";
     document.getElementById(m).style.display = "none";
     document.getElementById(n).style.display = "none";
-    document.getElementById(l).style.display = "none";
     document.getElementById(et).style.display = "block";
     q = s = et;
 }
