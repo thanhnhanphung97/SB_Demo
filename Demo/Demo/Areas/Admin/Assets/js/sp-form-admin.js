@@ -1,4 +1,12 @@
 ﻿var app = angular.module("myApp", []);
+
+app.filter('HtmlToPlainText', function () {
+    return function (text) {
+        return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+    };
+}
+);
+
 app.service('myService', function ($http) {
     this.getIntroduces = function () {
         return $http.get("HomeAdmin/GetAllIntro");
@@ -45,6 +53,56 @@ app.service('myService', function ($http) {
             url: "HomeAdmin/DeleteIntroduce",
             params: {
                 Id: JSON.stringify(introduceID)
+            }
+        })
+        return response;
+    }
+
+    this.getNews = function () {
+        return $http.get("HomeAdmin/GetAllN");
+    };
+
+    //Add introduce
+    this.AddN = function (New) {
+        var response = $http({
+            method: "post",
+            url: "HomeAdmin/AddNew",
+            data: JSON.stringify(New),
+            dataType: "json"
+        });
+        return response;
+    }
+
+    // get introduce By Id
+    this.getN = function (NewID) {
+        var response = $http({
+            method: "POST",
+            url: "HomeAdmin/getNewByNo",
+            params: {
+                id: JSON.stringify(NewID)
+            }
+        });
+        return response;
+    }
+
+    // Update introduce
+    this.updateN = function (New) {
+        var response = $http({
+            method: "post",
+            url: "HomeAdmin/UpdateNew",
+            data: JSON.stringify(New),
+            dataType: "json"
+        });
+        return response;
+    }
+
+    //Delete introduce
+    this.DeleteN = function (NewID) {
+        var response = $http({
+            method: "post",
+            url: "HomeAdmin/DeleteNew",
+            params: {
+                Id: JSON.stringify(NewID)
             }
         })
         return response;
@@ -163,7 +221,107 @@ app.controller('myIntroCntrl', function ($scope, myService) {
         $('#textFroalaIntro').froalaEditor('html.set', "");
         $scope.describeIntro = null;
         $scope.colorIntro = null;
+
+        $scope.idN = null;
+        $scope.nameN = null;
+        $scope.imgN = null;
+        document.getElementById('imageN').src = "";
+        document.getElementById('imageN').style.display = "none";
+        $('#textFroalaN').froalaEditor('html.set', "");
+        $scope.describeN = null;
     }
 
+    GetAllNew();
+    function GetAllNew() {
+        debugger;
+        var getData = myService.getNews();
+        debugger;
+        getData.then(function (N) {
+            $scope.News = N.data;
+        }, function () {
+            toastr.error("Error!", "Notification");
+        });
+    }
+
+    $scope.editNew = function (New) {
+        debugger;
+        document.getElementById('imageN').style.display = "block";
+        var getdata = myService.getN(New.Id);
+        getdata.then(function (N) {
+            $scope.New = N.data;
+            $scope.idN = New.Id;
+            $scope.nameN = New.Name;
+            document.getElementById('imageN').src = New.Img;
+            $scope.imgN = New.Img;
+            $scope.describeN = New.Describe;
+            $('#textFroalaN').froalaEditor('html.set', New.Describe);
+            $scope.Action = "Edit";
+        }, function () {
+            //document.getElementById('imageIntro').src = $scope.Img;
+            //$('#textOfFroala').froalaEditor('html.set', $scope.Describe);
+        });
+
+    }
+
+    $scope.AddUpdateN = function () {
+        //debugger;
+        var html = $('#textFroalaN').froalaEditor('html.get');
+        $scope.describeN = html;
+        if ($scope.colorN == "") $scope.colorN = '#000000';
+        var New = {
+            Name: $scope.nameN,
+            Img: $scope.imgN,
+            Describe: $scope.describeN,
+        };
+        var getAction = $scope.Action;
+        if (getAction == "Edit") {
+            New.Id = $scope.idN;
+            var getData = myService.updateN(New);
+            getData.then(function (msg) {
+                GetAllNew();
+                toastr.success("Success!", "Notification");
+            }, function () {
+                toastr.error("Error!", "Notification");
+            });
+        }
+        else {
+            var getData = myService.AddN(New);
+            getData.then(function (msg) {
+                GetAllNew();
+                toastr.success("Success!", "Notification");
+            }, function () {
+                toastr.error("Error!", "Notification");
+            });
+        }
+    }
+    $scope.deleteNew = function (New) {
+        if (confirm("Are you sure?")) {
+            var getData = myService.DeleteN(New.Id);
+            getData.then(function (msg) {
+                GetAllNew();
+                toastr.warning("Success!", "Notification");
+            }, function () {
+                toastr.error("Error!", "Notification");
+            });
+        }
+    };
+
+    $scope.TextUrlImageN = function () {
+        var finder = new CKFinder();
+        finder.selectActionFunction = function (url) {
+            $scope.imgN = url;
+            $("#txtImageN").val(url);
+            document.getElementById("imageN").src = url;
+            document.getElementById("imageN").style.backgroundColor = 'lightgrey';
+            document.getElementById("imageN").style.display = "block";
+            document.getElementById("imageN").hidden = false;
+        };
+        finder.popup();
+    }
+
+    $scope.AddNewDiv = function () {
+        ClearFields();
+        $scope.Action = "Create";
+    }
 });
 

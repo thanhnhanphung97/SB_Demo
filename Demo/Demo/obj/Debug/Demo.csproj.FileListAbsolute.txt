@@ -36,7 +36,6 @@ D:\SB_Demo\Demo\Demo\bin\Microsoft.AI.DependencyCollector.xml
 D:\SB_Demo\Demo\Demo\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\SB_Demo\Demo\Demo\bin\Microsoft.AI.WindowsServer.xml
 D:\SB_Demo\Demo\Demo\bin\Microsoft.AI.Web.xml
-D:\SB_Demo\Demo\Demo\obj\Debug\Demo.csprojResolveAssemblyReference.cache
 D:\SB_Demo\Demo\Demo\obj\Debug\Demo.csproj.CoreCompileInputs.cache
 D:\SB_Demo\Demo\Demo\obj\Debug\Demo.dll
 D:\SB_Demo\Demo\Demo\obj\Debug\Demo.pdb
@@ -128,3 +127,5 @@ D:\Test\SB_Demo\Demo\Demo\obj\Debug\Demo.csprojResolveAssemblyReference.cache
 D:\Test\SB_Demo\Demo\Demo\obj\Debug\Demo.csproj.CoreCompileInputs.cache
 D:\Test\SB_Demo\Demo\Demo\obj\Debug\Demo.dll
 D:\Test\SB_Demo\Demo\Demo\obj\Debug\Demo.pdb
+D:\SB_Demo\Demo\Demo\obj\Debug\Demo.csprojAssemblyReference.cache
+D:\SB_Demo\Demo\Demo\obj\Debug\Demo.csproj.CopyComplete
