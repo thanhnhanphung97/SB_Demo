@@ -155,6 +155,7 @@
     <Compile Include="Areas\Admin\Models\AccountModel.cs" />
     <Compile Include="Areas\Admin\Models\IntroducesModel.cs" />
     <Compile Include="Areas\Admin\Models\NewsModel.cs" />
+    <Compile Include="Areas\Admin\Models\PartnersModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartnersController.cs" />
     <Compile Include="Controllers\NewsController.cs" />

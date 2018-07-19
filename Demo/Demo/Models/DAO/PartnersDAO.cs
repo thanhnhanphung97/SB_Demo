@@ -32,17 +32,17 @@ namespace Demo.Models.DAO
             return list;
         }
 
-        public bool InsertPartners(string name, string img, string describe, string link)
+        public bool InsertPartners(string name, string img, string describe, string background)
         {
             string query = "USP_Add_Partners @name , @img , @describe , @background";
-            int result = DataProvider.Instance.ExecuteNonQuery(query,new object[] { name , img , describe , link });
+            int result = DataProvider.Instance.ExecuteNonQuery(query,new object[] { name , img , describe , background });
             return result > 0;
         }
 
-        public bool EditPartners(int id, string name, string img, string describe, string link)
+        public bool EditPartners(int id, string name, string img, string describe, string background)
         {
             string query = "USP_Edit_Partners @id , @name , @img , @describe , @background";
-            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { id, name, img, describe, link });
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { id, name, img, describe, background });
             return result > 0;
         }
 
