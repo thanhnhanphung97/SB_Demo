@@ -2102,7 +2102,9 @@
     <Content Include="Scripts\wp-emoji-release.min.js" />
     <Content Include="Scripts\www-widgetapi.js" />
     <Content Include="Scripts\ytprefs.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

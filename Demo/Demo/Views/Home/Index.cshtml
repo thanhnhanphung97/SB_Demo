@@ -11,22 +11,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{int sz = introduces.Capacity, h = 300 + 300 * (sz / 4 + (sz % 4 != 0 ? 1 : 0));
+@{int sz = introduces.Capacity, h = 200 + 200 * (sz / 4 + (sz % 4 != 0 ? 1 : 0));
     string height = h.ToString() + "px";
     }
-<div style="height:@height;width:1600px;margin-left:-250px;">
-    <h2 style="text-align:center;margin-bottom:100px;">ITELYA introduces itself.</h2>
-    <p style="text-align:center;margin-bottom:100px;margin-top:50px;color:dimgray;font-size:20px;width:1200px;margin-left:250px;">itelya creates a whole new world for travel expenses. With smart.billing – a purely cloud-based software – the company facilitates services according to international standards.</p>
+<div id="top-body" style="height:@height;width:1200px;margin-left:-30px;margin-top:150px;">
+    <h2 style="text-align:center;margin-bottom:60px;">ITELYA introduces itself.</h2>
+    <p style="text-align:center;margin-bottom:60px;margin-top:50px;color:dimgray;font-size:20px;width:1200px;">itelya creates a whole new world for travel expenses. With smart.billing – a purely cloud-based software – the company facilitates services according to international standards.</p>
     @foreach (var item in introduces)
     {
-        String color = "text-align:center;" + "background-color:" + item.Color + ";float:left;height:300px;width:400px;";
+        String color = "text-align:center;" + "background-color:" + item.Color + ";float:left;height:250px;width:300px;";
         <div style=@color>
             <div style="margin-top:30px;">
                 @*@{String img = "/Images/" + item.Img;}*@
-                <img src=@item.Img alt="" height="140" width="140" />
+                <img src=@item.Img alt="" height="100" width="100" />
             </div>
             <div style="color:white;">
-                <div style="font-size:60px;font-weight:bold;">
+                <div style="font-size:40px;font-weight:bold;">
                     @item.Data
                     @if (item.Data != (int)(item.Data))
                     {
@@ -42,21 +42,20 @@
     }
 </div>
 <br />
-<div style="margin-top:100px;margin-bottom:50px;height:500px;width:1700px;margin-left:-200px;">
-    <h2 style="text-align:center;margin-bottom:100px;margin-left:-200px;">NEWS</h2>
+<div style="margin-top:100px;margin-bottom:50px;height:400px;width:1250px;margin-left:-30px;">
+    <h2 style="text-align:center;margin-bottom:50px;margin-top:100px;margin-left:-40px;">NEWS</h2>
     @{
         int num = 0;
         foreach (var item in news)
         {
-
             if (num++ == 4)
             { break; }
-            <div style="float:left;height:500px;width:350px;margin-right:40px;">
+            <div style="float:left;height:250px;width:268px;margin-right:40px;">
                 <div>
-                    @{@*String img = "/Images/" + item.Img;*@
+                    @{
                     String link = "/news/Details/" + item.Id;
                     }
-                    <a href=@link><img src=@item.Img alt="" height="250" width="350" /></a>
+                    <a href=@link><img src=@item.Img alt="" height="150" width="280" /></a>
                 </div>
                 <div style="margin-top:25px;margin-bottom:15px;">
                     <a href=@link style="font-weight:bold;color:black;font-size:20px;text-decoration:none;">@item.Name</a>
@@ -86,3 +85,5 @@
     }
 </div>
 <a href="~/news/Index" style="color:white;font-size:20px;text-decoration:none;"><div style="margin-left:450px;margin-top:300px;text-align:center;background-color:#89b51e;width:200px;padding-top:10px;padding-bottom:10px;border-radius:5px;">SEE ALL NEWS</div></a>
+
+
